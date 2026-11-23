@@ -1,0 +1,763 @@
+{"scores":{"A":{"correctness":5,"overview":5,"structure":5,"justification":5,"economy":4,"notation":4,"explanation":5},"B":{"correctness":5,"overview":5,"structure":5,"justification":5,"economy":4,"notation":5,"explanation":5},"C":{"correctness":4,"overview":4,"structure":3,"justification":3,"economy":2,"notation":3,"explanation":4},"D":{"correctness":5,"overview":5,"structure":5,"justification":5,"economy":5,"notation":5,"explanation":5}},"ranking":["D","B","A","C"],"rationale":"D gives the cleanest complete argument: it announces the planar/three-dimensional dichotomy early, proves the exceptional-pair and bad-triple estimates efficiently, and finishes with a particularly economical integrated mass contradiction. B is equally convincing mathematically and its named claims make the difficult endpoint argument easy to audit, though it is somewhat longer than D. A is also correct and highly explanatory, but its preliminary normalization discussion and notation around the integrated measure make the presentation slightly heavier than B's. C contains the same sound core argument, but it is substantially more diffuse and invokes undefined references such as \\eqref{ang:direction-pair-kernel} and \\eqref{ang:point-slice-total}, forcing the reader to reconstruct justifications that the other proofs supply directly."}
+
+OpenAI Codex v0.154.0
+--------
+workdir: /var/folders/ps/8d52my597m10nypcpg3zg14w0000gp/T/tmpj2hflyb3
+model: gpt-5.6-sol
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: high
+reasoning summaries: none
+session id: 01a1c751-0e7f-7720-b44d-dd06a1bb17ec
+--------
+user
+You are an expert mathematician judging the exposition of several proofs of the same statement. The proofs are labeled with neutral letters, and their order carries no meaning. Judge each proof on its own merits using the rubric below.
+
+Read the statement, the context and every proof carefully before scoring. Check correctness yourself: a proof with a mathematical error or a gap that a careful reader cannot fill must score low on correctness.
+
+Answer with a single JSON object and nothing else:
+
+{
+  "scores": {"<label>": {"correctness": int, "overview": int, "structure": int, "justification": int, "economy": int, "notation": int, "explanation": int}, ...},
+  "ranking": ["<best label>", ..., "<worst label>"],
+  "rationale": "Three to six sentences explaining the ranking, citing concrete features of the proofs."
+}
+
+The ranking is your overall judgment of which proof a research mathematician would most want to read, taking all dimensions into account, with correctness weighted most.
+
+
+# Rubric for proof exposition
+
+Score each proof on each dimension from 1 (poor) to 5 (excellent). The dimensions follow research on how mathematicians read and judge proofs:
+
+- Mejía-Ramos, Fuller, Weber, Rhoads and Samkoff (2012), "An assessment model for proof comprehension in undergraduate mathematics", Educational Studies in Mathematics 79: comprehension has local dimensions (meaning of terms, logical status of statements, justification of claims) and holistic ones (summarizing the main idea, seeing the modular structure, transferring the method).
+- Lai, Weber and Mejía-Ramos (2012), "Mathematicians' perspectives on features of a good pedagogical proof", Cognition and Instruction 30: mathematicians revise proofs by adding overviews, introducing the main idea early, and removing details that do not help the reader.
+- Lamport (1995), "How to write a proof", American Mathematical Monthly 102: hierarchical structure lets the reader see the outline first and drill down as needed.
+- Hanna (1990) and the later literature on explanatory proof: a proof can show that a result holds, or also why it holds.
+
+## Dimensions
+
+1. **Correctness and completeness.** Every step is valid, and no step needed for the conclusion is missing or hand-waved. Gaps a careful reader must fill count against this score. A proof with an error scores at most 2.
+2. **Overview and main idea.** The reader learns early what the strategy is and which idea makes the proof work.
+3. **Structure.** The proof is divided into steps or claims whose roles are clear, and the reader can see how they fit together and which can be skipped on a first reading.
+4. **Local justification.** Each claim says why it holds (which hypothesis, lemma or earlier step), so a reader can check it without reconstructing the reasoning.
+5. **Economy.** The proof includes what the reader needs and nothing more. Irrelevant detail, repetition, and bookkeeping that hides the argument count against it. Brevity bought by skipping needed steps counts under dimension 1, not here.
+6. **Notation and terminology.** Symbols and terms are defined before use, used consistently, and chosen to help the reader.
+7. **Explanatory value.** The proof shows why the result is true, for example by making clear where each hypothesis is used and what would fail without it.
+
+A proof may legitimately cite results that are stated in the provided context. Judge each proof as a document a research mathematician would read.
+
+
+# Statement
+
+% Macros: \R=\mathbb R, \eps=\varepsilon, \one=\mathbf 1 (indicator), \TV=total variation, \dist, \supp, \Lip as usual.
+% Section conventions:
+All sets in this section lie in fixed bounded regions. Directions are unit
+vectors, with antipodal vectors identified when discussing lines. A finite
+number of projective charts removes this distinction. For a bounded set
+$A$, write $|A|_r$ for its covering number by balls of radius $r$. A tube has
+bounded length and the stated perpendicular width; enlarging its length by
+a fixed constant is always permitted. We use the ball-bound and subpower
+conventions of Section~\ref{sec:conventions}. Bounds for radii in a fixed
+larger bounded interval follow by changing constants. In particular,
+incidence mass at least subpower means a lower bound $\delta^{o(1)}$.
+
+
+\begin{theorem}[Linear projection gain]\label{ang:linear-gain}
+Fix $k\ge2$ and
+\[
+ k-1\le q\le k-\tfrac12<t<k.
+\]
+Fix a tube-width constant $C$. In the case $q=k-1$, also fix
+$\zeta>0$. There exist $\epsilon,c>0$ such that, for all sufficiently
+small $\delta$, the following holds. Let $\mu$ be a bounded point
+subprobability in $\R^{k+1}$ and $\nu$ a direction subprobability on $S^k$
+with respective $t$- and $q$-ball bounds of loss $\delta^{-\epsilon}$
+down to $\delta$. At $q=k-1$ assume in addition
+\begin{equation}\label{ang:endpoint-plate}
+ \nu\{w:\dist(w,H)\le r\}\le\delta^{-\epsilon}r^\zeta
+       \qquad(\delta\le r\le1)
+\end{equation}
+for every linear hyperplane $H$. Let $E\subset\R^{k+1}\times S^k$ be a
+measurable incidence relation, and write $E_w=\{x:(x,w)\in E\}$.
+If each direction fiber $E_w$ is covered by at most
+$\delta^{-q-\epsilon}$ tubes parallel to $w$ of width $C\delta$, then
+\[
+ (\mu\otimes\nu)(E)\le\delta^c.
+\]
+All constants are uniform over the measures and the incidence relations
+with these fixed parameters.
+\end{theorem}
+
+
+# Context: results the proofs may cite
+
+Earlier results of the same paper, which any proof may cite. Their proofs are omitted.
+
+\begin{theorem}[Planar discretized Furstenberg estimate]
+\label{ang:furstenberg}
+Let $0<b<1$ and $b<f<2$. There is $\epsilon_0>0$ such that the
+following holds for sufficiently small $\delta$. Suppose that $P$ is
+a nonempty bounded $(\delta,f,\delta^{-\epsilon_0})$-set and that
+each $x\in P$ has a nonempty family $\mathcal T_x$ of incident
+$\delta$-tubes whose line parameters form a
+$(\delta,b,\delta^{-\epsilon_0})$-set. Then
+\[
+ \left|\bigcup_{x\in P}\mathcal T_x\right|_\delta
+       \ge\delta^{-2b-\epsilon_0}.
+\]
+The exponent may be decreased to absorb fixed bounded charts and fixed
+width multiples.
+\end{theorem}
+
+\begin{lemma}[Planar measure incidence obstruction]
+\label{ang:planar-measures}
+Fix $0<b<1$ and $b<f<2$. There is no sequence $\delta\to0$ with the
+following data. Let $\mu,\nu$ be subprobabilities on Borel label sets
+$X,W$ in Euclidean spaces, and let
+\[
+ p:X\longrightarrow\R^2,\qquad v:W\longrightarrow S^1
+\]
+be measurable coordinate maps with fixed bounded images. Suppose that
+$p_\#\mu$ and $v_\#\nu$ have respective $f$- and $b$-ball bounds
+of loss $\delta^{-o(1)}$ down to $\delta$. Let $E\subset X\times W$ be a measurable
+incidence relation with
+\[
+ (\mu\otimes\nu)(E)\ge\delta^{o(1)}.
+\]
+For each original direction label $\omega\in W$, put
+$E_\omega=\{\xi\in X:(\xi,\omega)\in E\}$. Assume that the set of
+point coordinates $p(E_\omega)$ is covered by at most
+$\delta^{-b-o(1)}$ strips of width $C\delta$ parallel to $v(\omega)$.
+\end{lemma}
+
+\begin{lemma}[Haar band estimates]\label{ang:haar}
+Let $0\le h\le n-1$, and let $V$ be a Haar-random codimension-$h$
+linear subspace of $\R^n$.
+For a unit vector $w$,
+\[
+ \Pr\{\dist(w,V)\le\delta\}\asymp\delta^h.
+\]
+If $j\le n-h$ unit vectors $w_1,\ldots,w_j$ have singular values
+$d_1\ge\cdots\ge d_j\ge0$, then
+\begin{equation}\label{ang:haar-multiple}
+ \delta^{-jh}\Pr\{\dist(w_i,V)\le\delta\text{ for all }i\}
+       \le C_{n,j}\prod_{i=1}^j(d_i+\delta)^{-h}.
+\end{equation}
+When $h=0$, the probability and the factors with exponent $h$ are one.
+\end{lemma}
+
+\begin{lemma}[Selection of slices]\label{ang:slice-selection}
+Let $0\le h\le n-2$. Let point and direction subprobabilities $\mu,\nu$ in $\R^n$ have
+$t$- and $q$-ball bounds with subpower losses, where $t,q>h$.
+Assume the directions lie in a fixed small projective chart. Let an
+incidence relation $E$ have mass at least subpower, and suppose each
+direction fiber is covered by at most $\delta^{-q-o(1)}$ tubes of
+width $C\delta$.
+
+For Haar-random codimension-$h$ subspaces $V$ and
+$z\in V^\perp$, set
+\begin{align*}
+ d\nu_V(w)&=\delta^{-h}\one_{\{|P_{V^\perp}w|\le\delta\}}\,d\nu(w),\\
+ d\mu_{V,z}(x)&=\delta^{-h}
+       \one_{\{|P_{V^\perp}x-z|\le\delta\}}\,d\mu(x).
+\end{align*}
+Integrate $z$ over a fixed sufficiently large ball. There are families of restrictions
+$\widetilde\nu_V\le\nu_V$, $\widetilde\mu_{V,z}\le\mu_{V,z}$,
+and relations $\widetilde E_{V,z}\subset E$, measurable in the displayed
+parameters and restricted to the two bands defining $\mu_{V,z}$ and
+$\nu_V$, such that
+\[
+ \mathbb E_V\int
+ (\widetilde\mu_{V,z}\otimes\widetilde\nu_V)(\widetilde E_{V,z})\,dz
+ \ge\delta^{o(1)},
+\]
+and the following hold:
+\begin{enumerate}
+\item The restricted measures have masses and ball losses at most
+$\delta^{-o(1)}$, with exponents $q-h$ and $t-h$, respectively.
+\item Each remaining direction fiber is covered by at most
+$\delta^{-(q-h)-o(1)}$ width-$C'\delta$ tubes.
+\item Put
+\[
+ p_{V,z}(x)=P_Vx,\qquad v_V(w)=P_Vw/|P_Vw|
+ \quad\text{for }|P_{V^\perp}w|\le\delta.
+\]
+The first map is projection to $V+z$ followed by translation to $V$;
+the second is well-defined on the direction band for small $\delta$.
+The coordinate pushforwards of the restricted measures under these maps
+satisfy the ball bounds in item~1, with fixed constant changes. For every
+original direction label $w$ in that band, the coordinates
+$p_{V,z}(\{x:(x,w)\in\widetilde E_{V,z}\})$ have the tube cover in
+item~2 with direction $v_V(w)$. This cover remains attached to $w$ even
+when two projected direction coordinates coincide.
+\end{enumerate}
+The direction restriction $\widetilde\nu_V$ depends on $V$ only, and its
+mass has an a priori subpower upper bound valid for every $V$.
+\end{lemma}
+
+\begin{lemma}[Transverse tube counting]\label{ang:loomis-whitney}
+Let $v_1,\ldots,v_m$ be unit vectors in $\R^m$, $m\ge2$, and suppose
+$|\det(v_1,\ldots,v_m)|\ge\Delta>0$. If a bounded set $A$ is covered,
+for each $i$, by $M_i$ tubes of width $C\delta$ parallel to $v_i$, then
+\[
+ |A|_{C_m\delta}\le C_{m,C}\Delta^{-m}
+       \prod_{i=1}^m M_i^{1/(m-1)}.
+\]
+Changing the fixed constant in the covering radius changes only the
+constant in this inequality.
+\end{lemma}
+
+\begin{lemma}[Weak radial estimate]\label{ang:weak-radial}
+Fix $k\ge2$, $\zeta>0$, and
+\[
+ k-2<\ell<\frac{(k-1)^2}{k}.
+\]
+For every $e>0$ there exist $\epsilon,c>0$ with the following property
+for sufficiently small $\delta$. Suppose that a probability $\lambda$
+in a bounded subset of $\R^k$ satisfies
+\begin{align*}
+ \lambda(B(x,r))&\le\delta^{-\epsilon}r^{k-1},\\
+ \lambda(H^{(r)})&\le\delta^{-\epsilon}r^\zeta
+ \qquad(\delta\le r\le1)
+\end{align*}
+for every affine hyperplane $H$, where $H^{(r)}$ is its $r$-neighborhood.
+There is a measurable pair set $G$ such that
+\[
+ (\lambda\otimes\lambda)(G^c)\lesssim\delta^c,
+ \qquad
+ \lambda\{z:(x,z)\in G,\ \pi_x(z)\in B(\theta,r)\}
+       \le\delta^{-e}r^\ell
+\]
+for every $x$, every spherical cap center $\theta$, and
+$\delta\le r\le1$. The diagonal is omitted from $G$. The conclusion
+also holds for balls in projective direction space, with a fixed change
+of constant, by taking the two antipodal caps.
+\end{lemma}
+
+
+# Proofs
+
+## Proof A
+
+\noindent\textbf{Overview.} We argue by contradiction and slice by Haar-random subspaces $V$ (Lemma~\ref{ang:slice-selection}). If $q>k-1$, planar slices ($h=k-1$) already contradict the planar obstruction (Lemma~\ref{ang:planar-measures}). If $q=k-1$, planar slices would leave direction exponent $0$. So we slice to dimension three ($h=k-2$), where the point exponent is $t-h>3/2$ and the direction exponent is $1$. Three tube covers in transverse directions confine a set to about $\delta^{-3/2}$ balls (Lemma~\ref{ang:loomis-whitney}), and this contradicts the point ball bound. The real work is finding, inside one slice, three \emph{quantitatively transverse} directions that share a large incident point set. Here the plate hypothesis~\eqref{ang:endpoint-plate} enters, through the weak radial estimate.
+
+\begin{proof}
+\textbf{Step 0: Reductions.} It suffices to rule out a sequence $\delta\to0$ of data obeying the hypotheses with losses $\delta^{-o(1)}$, tube counts $\delta^{-q-o(1)}$ and $(\mu\otimes\nu)(E)\ge\delta^{o(1)}$. Indeed, if no $\epsilon,c$ worked, counterexamples with $\epsilon=c=1/j$ at scales $\delta_j<1/j$ would form such a sequence. Cover $S^k$ by finitely many small caps and pigeonhole one carrying incidence $\ge\delta^{o(1)}$. After a rotation, which preserves every hypothesis, this cap is $w(B)$, where $B\subset\R^k$ is a small ball and $w(p)=(1,p)/\sqrt{1+|p|^2}$. The map $w$ is bi-Lipschitz on $B$. Restrict $\nu$ and $E$ to this cap and normalize $\nu$. Its mass is $\ge\delta^{o(1)}$ (it bounds the incidence), so all losses stay subpower.
+
+A selected slice is always normalized in the same way. Lemma~\ref{ang:slice-selection} gives $\mathbb E_V\int(\widetilde\mu_{V,z}\otimes\widetilde\nu_V)(\widetilde E_{V,z})\,dz\ge\delta^{o(1)}$ over a bounded $z$-domain. Hence some $(V,z)$ has incidence $I\ge\delta^{o(1)}$. Both masses are $\le\delta^{-o(1)}$ and $I$ is at most their product, so both masses are also $\ge\delta^{o(1)}$. Dividing by them gives probabilities with subpower losses and incidence $\ge\delta^{o(1)}$.
+
+\textbf{Step 1: The case $q>k-1$.} Apply Lemma~\ref{ang:slice-selection} with $h=k-1$; its requirements $t,q>h$ and $h\le n-2=k-1$ hold. Then $V$ is a plane, and
+\[
+ b=q-h\in(0,\tfrac12],\qquad f=t-h\in(\tfrac12,1),\qquad b<f
+\]
+because $q\le k-\tfrac12<t$. Take a normalized slice from Step~0 and use the original points and directions as labels, with coordinate maps $p_{V,z}$ and $v_V$. Item~3 gives the $f$- and $b$-ball bounds of the pushforwards, and for each label $w$ a cover by $\delta^{-b-o(1)}$ strips parallel to $v_V(w)$. Along our sequence this is exactly the data excluded by Lemma~\ref{ang:planar-measures}.
+
+\textbf{Step 2: Setup for $q=k-1$.} Put $h=k-2$, so $\dim V=3$, and fix
+\[
+ g=t-h-\tfrac32>0,\qquad 0<a<g/4,\qquad h<\ell<h+\tfrac1k=\tfrac{(k-1)^2}{k}.
+\]
+Let $\lambda$ be the normalized law of $p=w^{-1}(\omega)$, $\omega\sim\nu$, and let $\nu=w_\#\lambda$ be what we feed to slicing. Then $\lambda$ has $(k-1)$-ball bounds with subpower loss. It also satisfies the affine plate bound $\lambda(H^{(r)})\lesssim\delta^{-o(1)}r^\zeta$, for the following reason. An affine hyperplane $\{a_0+a\cdot p=0\}$ is mapped by $w$ into the linear hyperplane $\{a_0y_0+a\cdot y=0\}$, and $w$ is Lipschitz, so~\eqref{ang:endpoint-plate} applies. Write $\lambda_V=\delta^{-h}\one_{\{\dist(w(p),V)\le\delta\}}\lambda$. By Fubini,
+\[
+ \mathbb E_V\lambda_V^{\otimes j}(S)=\int_S K_j\,d\lambda^{\otimes j},\qquad
+ K_j=\delta^{-jh}\Pr_V\{\dist(w(p_i),V)\le\delta\ \forall i\}.
+\]
+
+\emph{Wedge geometry.} Put $u_i=p_i-p_0$. Then $(1,p_0)\wedge(1,p_1)\wedge\cdots=(1,p_0)\wedge(0,u_1)\wedge\cdots$. The part containing $e_0$ is orthogonal to the rest, which gives
+\[
+|(1,p_0)\wedge(0,u_1)\wedge\cdots\wedge(0,u_m)|^2=|u_1\wedge\cdots\wedge u_m|^2+|p_0\wedge u_1\wedge\cdots\wedge u_m|^2 .
+\]
+Since $p_0$ is bounded and normalization costs constants, this yields
+\begin{equation}\label{wedge}
+ |w(p_0)\wedge w(p_1)|\asymp|u_1|,\qquad |w(p_0)\wedge w(p_1)\wedge w(p_2)|\asymp|u_1||u_2|\,\alpha,
+\end{equation}
+where $\alpha=|\tfrac{u_1}{|u_1|}\wedge\tfrac{u_2}{|u_2|}|$. For unit columns the top singular value is $\asymp1$, and the products of the leading singular values are the wedges in~\eqref{wedge}. So Lemma~\ref{ang:haar} (with $n=k+1$, $j\le3=n-h$) gives
+\begin{equation}\label{K2}
+K_2(p_0,p_1)\le C(|u_1|+\delta)^{-h}.
+\end{equation}
+
+\textbf{Step 3: Exceptional pairs.} Let $e>0$ be small and fixed (chosen in Step~4). Lemma~\ref{ang:weak-radial} applies to $\lambda$ at small scales, since its input losses are subpower. It gives $c_e>0$ and a pair set $G$ with $(\lambda\otimes\lambda)(G^c)\lesssim\delta^{c_e}$ and the cap bound with exponent $\ell$ and loss $\delta^{-e}$. For $b_0>0$ (Step~4) set
+\[
+\mathcal E_{\rm pair}=G^c\cup\{|p_0-p_1|<\delta^{b_0}\}.
+\]
+Call an anchored pair \emph{retained} if it lies outside $\mathcal E_{\rm pair}$.
+
+\emph{Claim: $\mathbb E_V(\lambda_V\otimes\lambda_V)(\mathcal E_{\rm pair})$ is power-small.} By~\eqref{K2} and the $(k-1)$-ball bound, summing over dyadic annuli $|u_1|\sim r$ gives
+\[
+\int_{|p_0-p_1|\le s}K_2\,d\lambda^{\otimes2}\le\delta^{-o(1)}\sum_{\delta\le r\le s}r^{k-1-h}\le\delta^{-o(1)}s .
+\]
+Here $k-1-h=1$, and the term $|u_1|<\delta$ is included at $r=\delta$. Fix $\theta\in(0,1]$ with $\theta h<c_e$. On $G^c\cap\{|u_1|>\delta^\theta\}$ we have $K_2\le C\delta^{-\theta h}$. Hence
+\[
+\mathbb E_V(\lambda_V\otimes\lambda_V)(\mathcal E_{\rm pair})\le C\delta^{c_e-\theta h}+\delta^{\theta-o(1)}+\delta^{b_0-o(1)}.
+\]
+
+\textbf{Step 4: Nearly dependent triples.} Let $\mathcal T$ be the set of triples $(p_0,p_1,p_2)$ such that both pairs $(p_0,p_i)$ are retained and $|w(p_0)\wedge w(p_1)\wedge w(p_2)|<2\delta^a$. On $\mathcal T$, \eqref{wedge} and $|u_i|\ge\delta^{b_0}$ give $\alpha\le R:=C\delta^{a-2b_0}$. They also give singular values $d_1\asymp1$, $d_2\gtrsim\delta^{b_0}$ and $d_3\gtrsim\delta^{2b_0}\alpha$, so Lemma~\ref{ang:haar} gives
+\[
+K_3\le C\delta^{-3hb_0}(\alpha+\delta)^{-h}.
+\]
+Fix $p_0,p_1$. The condition $\alpha\le r$ puts the displacement direction of $p_2$ from $p_0$ in two antipodal caps of radius $\asymp r$. So the weak radial estimate gives $\lambda\{p_2:(p_0,p_2)\in G,\ \alpha\le r\}\le C\delta^{-e}r^\ell$. Summing dyadic shells $\alpha\sim r$, $\delta\le r\le R$, together with the shell $\alpha\le\delta$, and using $\ell>h$, gives
+\begin{equation}\label{badT}
+\mathbb E_V\lambda_V^{\otimes3}(\mathcal T)\le C\delta^{-3hb_0-e}R^{\ell-h}\le C\delta^{(a-2b_0)(\ell-h)-3hb_0-e}.
+\end{equation}
+\emph{Order of constants:} $a$ and $\ell$ are fixed above. Next choose $b_0$ small so that $a>2b_0$ and $(a-2b_0)(\ell-h)>3hb_0$. Then choose $e$ small so that the exponent in~\eqref{badT} is positive. This fixes $c_e$, and then $\theta$. All of these are independent of $\delta$.
+
+\textbf{Step 5: A good triple in one slice.} Apply Lemma~\ref{ang:slice-selection} with $h=k-2$; again $t,q>h$ holds. Write $\widetilde\lambda_V=(w^{-1})_\#\widetilde\nu_V\le\lambda_V$; its mass is at most $\delta^{-o(1)}$ uniformly in $V$. For each $V$,
+\[
+\int\|\mu_{V,z}\|\,dz=\int\!\!\int\delta^{-h}\one_{\{|P_{V^\perp}x-z|\le\delta\}}\,dz\,d\mu(x)\le C .
+\]
+So the measure $dm=d\widetilde\mu_{V,z}(x)\,dz\,dV$ has total mass $\le C$. Let
+\[
+F(V,z,x)=\widetilde\lambda_V\{p:(x,w(p))\in\widetilde E_{V,z}\}.
+\]
+Then $\int F\,dm\ge\delta^{o(1)}$, and H\"older gives $\int F^3\,dm\ge\delta^{o(1)}$. Now $\int F^3\,dm$ is the $m\otimes\widetilde\lambda_V^{\otimes3}$-mass of tuples $(V,z,x,p_0,p_1,p_2)$ with $(x,w(p_i))\in\widetilde E_{V,z}$ for all $i$. Drop the incidence constraint and use $\widetilde\lambda_V\le\lambda_V$ and the uniform bound $\int\|\widetilde\mu_{V,z}\|dz\le C$; no independence of the point and direction slices is needed. Then the tuples with $(p_0,p_1,p_2)\in\mathcal T$ have mass $\le C\,\mathbb E_V\lambda_V^{\otimes3}(\mathcal T)$. Those with $(p_0,p_i)\in\mathcal E_{\rm pair}$ have mass
+\[
+\le C\sup_V\|\widetilde\lambda_V\|\;\mathbb E_V(\lambda_V\otimes\lambda_V)(\mathcal E_{\rm pair}).
+\]
+Both are power-small by~\eqref{badT} and Step~3. So mass $\ge\delta^{o(1)}$ remains on triples with wedge $\ge2\delta^a$. The parameters $(V,z,p_0,p_1,p_2)$ carry total mass $\le\delta^{-o(1)}$. So we can fix one slice $(V,z)$ and one such triple whose common incident set
+\[
+A_0=\{x:(x,w(p_i))\in\widetilde E_{V,z},\ i=0,1,2\}
+\]
+has $\widetilde\mu_{V,z}(A_0)\ge\delta^{o(1)}$.
+
+\textbf{Step 6: Contradiction.} Let $A=p_{V,z}(A_0)\subset V\cong\R^3$. By item~3 the pushforward of $\widetilde\mu_{V,z}$ has $(t-h)$-ball bounds with subpower loss, and it gives $A$ mass $\ge\delta^{o(1)}$. Hence
+\[
+|A|_\delta\ge\delta^{-(t-h)+o(1)}.
+\]
+For each $i$, item~3 also covers $A$ by $\delta^{-(q-h)-o(1)}=\delta^{-1-o(1)}$ tubes of width $C'\delta$ parallel to $v_i=v_V(w(p_i))$. Since $\dist(w(p_i),V)\le\delta$, we have $|v_i-w(p_i)|=O(\delta)$, so $|\det(v_0,v_1,v_2)|\ge2\delta^a-O(\delta)\ge\delta^a$. Lemma~\ref{ang:loomis-whitney} with $m=3$ and $\Delta=\delta^a$ gives
+\[
+|A|_\delta\le C\delta^{-3a}\big(\delta^{-1-o(1)}\big)^{3/2}=\delta^{-3/2-3a-o(1)} .
+\]
+Since $3a<g=t-h-\tfrac32$, the two bounds on $|A|_\delta$ are incompatible for small $\delta$.
+
+When $k=2$ we have $h=0$. Then $V=\R^3$, all slicing weights and Haar factors equal $1$, the $z$-integral is over a point, and the argument is unchanged.
+\end{proof}
+
+
+## Proof B
+
+\paragraph{Overview.} We argue by contradiction along a sequence of scales. Slicing by Haar-random subspaces (Lemma~\ref{ang:slice-selection}) reduces the dimension. If $q>k-1$ we slice down to a plane, and the planar obstruction (Lemma~\ref{ang:planar-measures}) applies directly. If $q=k-1$, planar slices would have direction exponent $0$, so we slice only to dimension three. There a point set incident to three \emph{quantitatively transverse} directions is small by Loomis--Whitney (Lemma~\ref{ang:loomis-whitney}), contradicting the point ball bound. The real work is to find such a triple, and this is where the plate hypothesis~\eqref{ang:endpoint-plate} is used, through the weak radial estimate (Lemma~\ref{ang:weak-radial}).
+
+\begin{proof}
+\emph{Step 0: reduction.} If the theorem failed, then for each $j$ there would be a counterexample at some scale $\delta_j<1/j$ with $\epsilon=c=1/j$. Hence it suffices to rule out a sequence $\delta\to0$ in which all losses are $\delta^{-o(1)}$, all covers have $\delta^{-q-o(1)}$ tubes, and $(\mu\otimes\nu)(E)\ge\delta^{o(1)}$. Cover $S^k$ by finitely many small projective charts. By pigeonhole, one chart carries incidence $\ge\delta^{o(1)}$. We restrict $\nu$ and $E$ to it and renormalize $\nu$ to a probability. Since $\|\nu\|\ge(\mu\otimes\nu)(E)$, renormalizing multiplies the losses by only $\delta^{-o(1)}$. Restriction shrinks fibers, so the tube covers persist. Below, ``subpower'' means $\delta^{\pm o(1)}$ and ``power-small'' means $O(\delta^{\kappa})$ for some fixed $\kappa>0$.
+
+\emph{Step 1: the case $q>k-1$.} Apply Lemma~\ref{ang:slice-selection} with $n=k+1$ and $h=k-1$. This requires $q,t>h$. The $(V,z)$-parameter space has bounded measure, so some slice has $(\widetilde\mu_{V,z}\otimes\widetilde\nu_V)(\widetilde E_{V,z})\ge\delta^{o(1)}$. By item~1 both restricted measures have mass at most $\delta^{-o(1)}$; dividing each by $\max(1,\text{mass})$ makes them subprobabilities and keeps the incidence subpower. The coordinates lie in the plane $V$, with exponents
+\[
+ b=q-h\in(0,\tfrac12],\qquad f=t-h\in(\tfrac12,1),\qquad b<f,
+\]
+because $k-1<q\le k-\frac12<t<k$. Apply Lemma~\ref{ang:planar-measures} with the original points and directions as labels and with the coordinate maps $p_{V,z},v_V$. Item~3 supplies the ball bounds on the pushforwards and, for each label $w$, a cover by $\delta^{-b-o(1)}$ strips parallel to $v_V(w)$. These data are excluded by that lemma, which is a contradiction.
+
+\emph{Step 2: endpoint setup.} Let $q=k-1$, $h=k-2$ (so $n-h=3$ and $q-h=1$) and $g=t-h-\frac32>0$. Fix $0<a<g/3$. Parametrize the chart by bounded $p\in\R^k$, $w(p)=(1,p)/\sqrt{1+|p|^2}$, and let $\lambda$ be the law of $p$, so that $\nu=w_\#\lambda$. Since $w$ is bi-Lipschitz on the chart, $\lambda(B(p,r))\le\delta^{-o(1)}r^{k-1}$. An affine hyperplane $\{\langle\alpha,p\rangle=\beta\}$ is the trace of the linear hyperplane $\{\langle\alpha,x\rangle=\beta x_0\}$, and on the chart the distances to the two are comparable. Hence~\eqref{ang:endpoint-plate} gives $\lambda(H^{(r)})\le\delta^{-o(1)}r^\zeta$ for affine $H$. Fix
+\[
+ h<\ell<\tfrac{(k-1)^2}{k}=h+\tfrac1k,
+\]
+and constants $b_0,e>0$ (chosen in Claim~C). For $\delta$ small, the losses are below the threshold that Lemma~\ref{ang:weak-radial} assigns to $e$. That lemma gives $c_e>0$ and a pair set $G$ with $(\lambda\otimes\lambda)(G^c)\lesssim\delta^{c_e}$ and the $\ell$-cap bound. Put
+\[
+ \mathcal E_{\rm pair}=G^c\cup\{(p,p'):|p-p'|<\delta^{b_0}\};
+\]
+pairs outside it are called \emph{retained}. Write $d\lambda_V=\delta^{-h}\one_{\{|P_{V^\perp}w(p)|\le\delta\}}d\lambda$, so that $\nu_V=w_\#\lambda_V$.
+
+\emph{Claim A (slicing kernels).} By Fubini, $\mathbb E_V\lambda_V^{\otimes j}(S)=\int_S K_j\,d\lambda^{\otimes j}$, where $K_j=\delta^{-jh}\Pr_V\{|P_{V^\perp}w(p_i)|\le\delta\ \forall i\}$. Let $d_1\ge d_2\ge d_3$ be the singular values of $(w(p_i))_i$. These are unit vectors, so $1\le d_1\le\sqrt3$, $d_1d_2\ge|w_1\wedge w_2|$ and $d_1d_2d_3=|w_1\wedge w_2\wedge w_3|$. In the chart $|w(p)\wedge w(p')|\asymp|p-p'|$. Lemma~\ref{ang:haar} therefore gives
+\[
+ K_2(p,p')\le C(|p-p'|+\delta)^{-h}.
+\]
+Also, for every $z$-slice, $\int\|\mu_{V,z}\|\,dz=c_h\|\mu\|\le C$, because $\int\delta^{-h}\one_{\{|P_{V^\perp}x-z|\le\delta\}}dz$ is the volume of the $h$-ball of radius $\delta$ divided by $\delta^h$.
+
+\emph{Claim B (chart wedge).} Put $u=p'-p$, $v=p''-p$ and $\alpha=|\frac{u}{|u|}\wedge\frac{v}{|v|}|$. Then
+\[
+ |w(p)\wedge w(p')\wedge w(p'')|\asymp|u|\,|v|\,\alpha .
+\]
+To see this, note that the unnormalized wedge is $(1,p)\wedge(0,u)\wedge(0,v)=e_0\wedge(0,u)\wedge(0,v)+(0,p)\wedge(0,u)\wedge(0,v)$. These two summands are orthogonal, so its squared norm is $|u\wedge v|^2+|p\wedge u\wedge v|^2\in[1,1+|p|^2]\cdot|u\wedge v|^2$. Normalizing the columns costs fixed constants. Now suppose both $(p,p')$ and $(p,p'')$ are retained. Then $d_2\ge c|u|\ge c\delta^{b_0}$, and $d_3\ge c|u||v|\alpha\ge c\delta^{2b_0}\alpha$. By Lemma~\ref{ang:haar} with $j=3$,
+\begin{equation}\label{eq:K3}
+ K_3\le C\delta^{-hb_0}(c\delta^{2b_0}\alpha+\delta)^{-h}\le C\delta^{-3hb_0}(\alpha+\delta)^{-h}.
+\end{equation}
+
+\emph{Claim C (exceptional sets are power-small).} Let $\mathcal T$ be the set of triples whose two anchored pairs $(p,p'),(p,p'')$ are retained and for which $|w(p)\wedge w(p')\wedge w(p'')|<2\delta^a$. Then $\mathbb E_V\lambda_V^{\otimes3}(\mathcal T)$ and $\mathbb E_V\lambda_V^{\otimes2}(\mathcal E_{\rm pair})$ are power-small.
+
+For triples in $\mathcal T$, Claim~B gives $\alpha\le r_0:=C\delta^{a-2b_0}$. Fix $p,p'$. The condition $\alpha\le r$ says that $(p''-p)/|p''-p|$ lies in two antipodal caps of radius $\asymp r$ about $\pm u/|u|$. The weak radial estimate therefore gives
+\[
+ \lambda\{p'':(p,p'')\in G,\ \alpha\le r\}\le C\delta^{-e}r^\ell\qquad(\delta\le r\le1).
+\]
+Sum~\eqref{eq:K3} over dyadic shells $\alpha\sim\rho$ with $\delta\le\rho\le r_0$, together with the shell $\alpha\le\delta$. Since $\ell>h$, the sum is dominated by its top term, so
+\[
+ \mathbb E_V\lambda_V^{\otimes3}(\mathcal T)\le C\delta^{(a-2b_0)(\ell-h)-e-3hb_0}.
+\]
+Choose $b_0$ so small that $a-2b_0>0$ and $(a-2b_0)(\ell-h)>3hb_0$; then choose $e$ so small that the exponent stays positive. This fixes $c_e$. Now pick $0<\theta\le1$ with $\theta h<c_e$, and split the pairs at distance $\delta^\theta$. On far pairs $K_2\le C\delta^{-\theta h}$, so $G^c$ contributes at most $C\delta^{c_e-\theta h}$. For pairs at distance $<\rho_0$ with $\rho_0\ge\delta$, summing the ball bound over dyadic annuli gives
+\[
+ \int\!\!\int_{|p-p'|<\rho_0}K_2\,d\lambda\,d\lambda\le\delta^{-o(1)}\sum_{\delta\le\rho\le\rho_0}\rho^{(k-1)-h}\le\delta^{-o(1)}\rho_0,
+\]
+using $(k-1)-h=q-h=1$. Applying this with $\rho_0=\delta^\theta$ and with $\rho_0=\delta^{b_0}$ bounds the near part of $G^c$ and the close pairs. This proves Claim~C.
+
+\emph{Step 3: a transverse triple.} Apply Lemma~\ref{ang:slice-selection} (with $h=k-2$) to $\mu$, $\nu=w_\#\lambda$ and $E$. Let $\widetilde\lambda_V\le\lambda_V$ be the chart pullback of $\widetilde\nu_V$; its mass is at most $M=\delta^{-o(1)}$ uniformly in $V$. Define
+\[
+ F(V,z,x)=\widetilde\lambda_V\{p:(x,w(p))\in\widetilde E_{V,z}\}.
+\]
+The integral $\mathbb E_V\!\int\!\!\int F\,d\widetilde\mu_{V,z}\,dz$ is the sliced incidence, which is $\ge\delta^{o(1)}$. By Claim~A the measure $dV\,dz\,d\widetilde\mu_{V,z}$ has total mass $O(1)$. Hölder's inequality therefore gives
+\[
+ \mathbb E_V\int\!\!\int F^3\,d\widetilde\mu_{V,z}\,dz\ge\delta^{o(1)}.
+\]
+Expand $F^3$ as the $\widetilde\lambda_V^{\otimes3}$-mass of triples all incident to $x$, and drop the incidence condition. The triples in $\mathcal T$ then contribute at most $\mathbb E_V\int\|\widetilde\mu_{V,z}\|\,dz\cdot\lambda_V^{\otimes3}(\mathcal T)\le C\,\mathbb E_V\lambda_V^{\otimes3}(\mathcal T)$. The triples with an anchored pair in $\mathcal E_{\rm pair}$ contribute at most $2CM\,\mathbb E_V\lambda_V^{\otimes2}(\mathcal E_{\rm pair})$. Both are power-small by Claim~C. Only domination by $\lambda_V$ and Claim~A are used here, and no independence between the point and direction slices. So triples with $|w_1\wedge w_2\wedge w_3|\ge2\delta^a$ carry incidence $\ge\delta^{o(1)}$. By Fubini, this equals the integral of $\widetilde\mu_{V,z}(A)$ against $dV\,dz\,d\widetilde\lambda_V^{\otimes3}$, where $A$ is the set of points incident to all three directions. That parameter measure has mass $\le CM^3=\delta^{-o(1)}$. Hence some slice $(V,z)$ and some such triple satisfy $\widetilde\mu_{V,z}(A)\ge\delta^{o(1)}$. Each $w_i$ lies in the band $|P_{V^\perp}w_i|\le\delta$, so $v_V(w_i)=w_i+O(\delta)$, and the three projected directions have determinant $\ge2\delta^a-C\delta\ge\delta^a$ in the $3$-space $V$.
+
+\emph{Step 4: counting.} Let $A'=p_{V,z}(A)\subset V$. The pushforward of $\widetilde\mu_{V,z}|_A$ has mass $\ge\delta^{o(1)}$ and, by item~3, the ball bound with exponent $t-h$. Hence
+\[
+ |A'|_\delta\ge\delta^{-(t-h)+o(1)}.
+\]
+By item~3, for each label $w_i$ the set $A'$ is covered by $\delta^{-(q-h)-o(1)}=\delta^{-1-o(1)}$ tubes of width $C'\delta$ parallel to $v_V(w_i)$. Lemma~\ref{ang:loomis-whitney} with $m=3$ and $\Delta=\delta^a$ gives
+\[
+ |A'|_\delta\lesssim\delta^{-3a}\bigl(\delta^{-1-o(1)}\bigr)^{3/2}=\delta^{-3/2-3a-o(1)}.
+\]
+This forces $t-h\le\frac32+3a$, contradicting $3a<g$. When $k=2$ we have $h=0$: all slicing weights equal one, and the $z$-integral is over a point. The argument is unchanged.
+\end{proof}
+
+
+## Proof C
+
+\begin{proof}[Proof of Theorem~\ref{ang:linear-gain}]
+We rule out any sequence with subpower input losses, subpower incidence
+mass from below, and cover size $\delta^{-q-o(1)}$. This implies the
+stated fixed-power result: if no positive $\epsilon,c$ worked, choose
+counterexamples with $\epsilon=c=1/j$ at scales
+$\delta_j<1/j$ tending to zero. They would form precisely such a
+sequence. This observation will also justify all uses of the gain with
+sufficiently small fixed losses.
+
+By choosing one of finitely many small projective charts, we can assume
+all relevant directions lie in a single chart and that incidence still
+has subpower mass. If $q>k-1$, apply
+Lemma~\ref{ang:slice-selection} with $h=k-1$. Select a slice with
+subpower incidence and normalize its marginal restrictions; their
+masses are bounded above by subpower and below by the incidence divided
+by the other marginal mass. The coordinate maps take values in a plane, with
+\[
+ b=q-h\in(0,\tfrac12],\qquad
+ f=t-h\in(\tfrac12,1),\qquad b<f,
+\]
+and tube count at most $\delta^{-b-o(1)}$. Apply
+Lemma~\ref{ang:planar-measures} with the original sliced points and
+directions as labels, and with coordinate maps $p_{V,z}$ and $v_V$.
+Item~3 of Lemma~\ref{ang:slice-selection} gives the ball bounds on their
+coordinate pushforwards and the separate cover for each original direction
+label. The labeled incidence relation still has subpower mass, so these
+data contradict the planar obstruction.
+
+At $q=k-1$, slicing to the plane would leave direction exponent zero,
+outside the range of Lemma~\ref{ang:planar-measures}. We therefore put
+$h=k-2$, so the selected slices have dimension three, and let
+\[
+ g=t-h-\tfrac32>0.
+\]
+Choose once and for all $0<a<g/4$. We will find in one slice three
+directions of determinant at least $c\delta^a$ with a common incident
+point set of mass at least subpower. The resulting loss in
+Lemma~\ref{ang:loomis-whitney} is $O(\delta^{-3a})$, which the
+strict gap $g$ will absorb.
+
+Parameterize our chart by $p\in\R^k$, with unit direction
+$w(p)=(1,p)/\sqrt{1+|p|^2}$. Restricting and normalizing the chart
+costs only a subpower factor; denote the resulting law in $p$ by
+$\lambda$. In the rest of the endpoint proof the direction law supplied
+to slicing is $w_\#\lambda$, and the incidence relation is restricted to
+this chart. The slice law of the chart labels is
+\[
+ d\lambda_V(p)=\delta^{-h}
+ \one_{\{|P_{V^\perp}w(p)|\le\delta\}}\,d\lambda(p),
+ \qquad \nu_V=w_\#\lambda_V.
+\]
+Equation~\eqref{ang:endpoint-plate}
+becomes the affine-hyperplane bound in the $p$ coordinates, because
+an affine hyperplane there is the intersection of a linear hyperplane
+with the chart. The ball exponent remains $k-1$. Choose
+\[
+ h<\ell<\frac{(k-1)^2}{k}=h+\frac1k.
+\]
+Apply Lemma~\ref{ang:weak-radial} to this chart law, with a small
+fixed output loss $\delta^{-e}$. Its hypotheses hold at sufficiently
+small scales for every fixed input-loss threshold. This deletes a
+pair set of original product mass $O(\delta^{c_e})$ and gives, for
+every anchor $p$, an $\ell$-cap bound $\delta^{-e}r^\ell$ on
+the undeleted displacement directions. Also delete pairs at distance
+less than $\delta^{b_0}$, where $b_0>0$ will be small. Denote the union
+of these two exceptional pair relations by $\mathcal E_{\mathrm{pair}}$,
+and call an anchored pair retained when it lies outside this union.
+
+We first record how these deletions transfer to normalized slice-pair
+mass. Equation~\eqref{ang:direction-pair-kernel}
+shows that for every measurable chart-pair relation $\mathcal E$ with
+$(\lambda\otimes\lambda)(\mathcal E)\le\delta^c$, and every fixed
+$\theta>0$,
+\begin{equation}\label{ang:exceptional-pair-transfer}
+ \mathbb E_V(\lambda_V\otimes\lambda_V)(\mathcal E)
+ \le C\delta^{c-\theta h}
+       +\delta^{\theta(q-h)-o(1)}.
+\end{equation}
+For $0<\theta\le1$, the first term treats distances greater than
+$\delta^\theta$, and the second treats smaller distances by the ball
+bound and annular summation. For $\theta\ge1$, the kernel is at most
+$C\delta^{-h}$, so the whole expectation is at most
+$C\delta^{c-h}\le C\delta^{c-\theta h}$. The same annulus calculation
+bounds the expected mass of the close pairs by
+$\delta^{b_0(q-h)-o(1)}$. We leave $\theta$ free until $e$, and hence
+the weak-radial deletion exponent $c_e$, has been fixed.
+
+We next bound triples that are close to linearly dependent. For two
+retained anchored pairs $(p,p'),(p,p'')$, set
+\[
+ \alpha=\left|
+ \frac{p'-p}{|p'-p|}\wedge\frac{p''-p}{|p''-p|}\right|.
+\]
+In a bounded chart,
+\begin{equation}\label{ang:chart-wedge}
+ |w(p)\wedge w(p')\wedge w(p'')|
+       \asymp |p'-p|\,|p''-p|\,\alpha.
+\end{equation}
+To see this, put $u=p'-p$ and $v=p''-p$ and subtract the first
+unnormalized column from the other two. The orthogonal decomposition
+of exterior powers gives the identity
+\[
+ |(1,p)\wedge(0,u)\wedge(0,v)|^2
+       =|u\wedge v|^2+|p\wedge u\wedge v|^2.
+\]
+It supplies the lower bound, while boundedness of $p$ supplies the
+upper bound. Normalizing the three columns changes only fixed constants.
+Consequently a wedge smaller than $2\delta^a$ implies
+$\alpha\le C\delta^{a-2b_0}$.
+
+For $(w_1,w_2,w_3)=(w(p),w(p'),w(p''))$, the largest singular
+value is comparable to one. Their first two columns span area at least $c\delta^{b_0}$,
+so the second singular value is at least $c\delta^{b_0}$; by
+Equation~\eqref{ang:chart-wedge}, the third is at least
+$c\delta^{2b_0}\alpha$. Lemma~\ref{ang:haar} therefore bounds
+their normalized expected slicing weight by
+\begin{equation}\label{ang:triple-weight}
+ \delta^{-3h}\Pr_V\{\max_{1\le i\le3}|P_{V^\perp}w_i|\le\delta\}
+ \le C\delta^{-3hb_0}(\alpha+\delta)^{-h}.
+\end{equation}
+This includes singular values below $\delta$, since the kernel is
+truncated there. At fixed $p,p'$, the weak radial estimate and
+the two antipodal caps give
+\[
+ \lambda\{p'':(p,p'')\text{ is retained},\ \alpha\le r\}
+       \le C\delta^{-e}r^\ell
+       \qquad(\delta\le r\le1).
+\]
+Let $\mathcal T_\delta$ be the chart triples whose two anchored pairs
+are retained and whose original wedge has size less than $2\delta^a$.
+Summing dyadic annuli in Equation~\eqref{ang:triple-weight}, up to
+$C\delta^{a-2b_0}$, gives
+\begin{equation}\label{ang:bad-triples}
+ \mathbb E_V\lambda_V^{\otimes3}(\mathcal T_\delta)
+ \le C\delta^{(a-2b_0)(\ell-h)-e-3hb_0}.
+\end{equation}
+Since $\ell>h$, first choose $b_0>0$ sufficiently small depending
+on $a,\ell,h$, and then $e>0$ sufficiently small, so that this
+exponent is positive. These choices also ensure $a-2b_0>0$.
+With $e$ fixed, the weak radial estimate fixes $c_e>0$. Now choose
+$\theta>0$ small enough that $c_e-\theta h>0$. Since $q-h=1$, the
+second exponent in Equation~\eqref{ang:exceptional-pair-transfer} is
+also positive. Together with the close-pair bound, this proves that
+$\mathcal E_{\mathrm{pair}}$ has power-small expected slice-pair mass.
+
+Perform the restrictions in Lemma~\ref{ang:slice-selection}, and
+write $\widetilde\lambda_V=(w^{-1})_\#\widetilde\nu_V$ for the restricted
+law of chart labels. It is dominated by $\lambda_V$ and has the same
+uniform subpower mass bound as $\widetilde\nu_V$. Define
+\[
+ F(V,z,x)=\widetilde\lambda_V
+ \{p:(x,w(p))\in\widetilde E_{V,z}\}.
+\]
+Its integrated first moment is the retained sliced incidence and is at
+least subpower, while the total integrated point mass is bounded by a
+fixed constant.
+H\"older's inequality consequently yields
+\begin{equation}\label{ang:triple-incidence}
+ \mathbb E_V\int\int F(V,z,x)^3
+                 \,d\widetilde\mu_{V,z}(x)\,dz
+       \ge\delta^{o(1)}.
+\end{equation}
+Dropping the point-incidence indicators bounds the contributions of
+bad triples and exceptional anchored pairs by the left-hand sides below.
+Equation~\eqref{ang:point-slice-total} and
+$\widetilde\lambda_V\le\lambda_V$ give
+\begin{align*}
+ \mathbb E_V\int \|\widetilde\mu_{V,z}\|
+      \widetilde\lambda_V^{\otimes3}(\mathcal T_\delta)\,dz
+ &\le C\mathbb E_V\lambda_V^{\otimes3}(\mathcal T_\delta),\\
+ \mathbb E_V\int \|\widetilde\mu_{V,z}\|\,\|\widetilde\lambda_V\|
+      (\widetilde\lambda_V\otimes\widetilde\lambda_V)
+          (\mathcal E_{\mathrm{pair}})\,dz
+ &\le C\sup_V\|\widetilde\lambda_V\|\,
+      \mathbb E_V(\lambda_V\otimes\lambda_V)
+          (\mathcal E_{\mathrm{pair}}).
+\end{align*}
+Both quantities are power-small by Equation~\eqref{ang:bad-triples}
+and the preceding bound for $\mathcal E_{\mathrm{pair}}$; the latter
+also covers the two possible anchored pairs after changing the constant. No independence
+between the point and direction slices is used. Hence a
+subpower amount of the triple incidence in
+Equation~\eqref{ang:triple-incidence} has original wedge at least
+$2\delta^a$. Projection to $V$ and unit normalization change each
+vector by $O(\delta)$, so their determinant in $V$ is at least
+$\delta^a$ for small $\delta$.
+
+The total parameter mass for integrating $(V,z)$ and three restricted
+chart labels is at most subpower, since $\|\widetilde\lambda_V\|$ has a
+uniform subpower bound and the $z$-domain is bounded.
+It follows that some slice and some such triple have a common
+incident point set of sliced mass at least subpower. Let $A$ be its
+projected point coordinates. The pushforward of its restricted point
+measure has the same mass and inherits the point-coordinate ball bound,
+which implies
+\[
+ |A|_\delta\ge\delta^{-(t-h)+o(1)}.
+\]
+For each of the three original direction labels, the projected common
+point set has its own cover by
+$\delta^{-(q-h)-o(1)}=\delta^{-1-o(1)}$ tubes in that label's projected
+direction. By
+Lemma~\ref{ang:loomis-whitney},
+\[
+ |A|_\delta\le\delta^{-3/2-3a-o(1)}.
+\]
+This contradicts $3a<g=t-h-3/2$. When $k=2$ we have $h=0$;
+all slicing weights equal one and the same proof applies, with the
+$z$-integral interpreted as integration over the singleton
+zero-dimensional space. The endpoint and the theorem are proved.
+\end{proof}
+
+
+## Proof D
+
+\begin{proof}
+It suffices to exclude a sequence $\delta\to0$ with subpower input losses, fiber covers of size $\delta^{-q-o(1)}$, and incidence mass at least $\delta^{o(1)}$. Indeed, failure of the theorem would supply such counterexamples with $\epsilon=c=1/j$ and $\delta_j<1/j$.
+
+Work along such a sequence. Restrict the relation to the bounded point region carrying $\mu$, preserving its mass. Choose one of finitely many small projective direction charts retaining subpower incidence, and normalize the restricted direction measure to a probability. Its mass before normalization is at least the retained incidence, so normalization costs only subpower factors. All fiber covers are inherited.
+
+Above the endpoint, we will slice to a plane. At the endpoint, we instead slice to three dimensions, where three transverse directions force a common incident set to be too small.
+
+\emph{The non-endpoint case.}
+Suppose $q>k-1$. Apply Lemma~\ref{ang:slice-selection} with $h=k-1$ and select a slice with subpower incidence. Scale its two restricted measures down by subpower factors to make them subprobabilities. Their planar coordinate pushforwards have ball exponents
+\[
+ b=q-h\in(0,\tfrac12],\qquad f=t-h\in(\tfrac12,1),
+\]
+and each original direction label has a cover by $\delta^{-b-o(1)}$ strips. These are precisely the hypotheses of Lemma~\ref{ang:planar-measures}, a contradiction. Keeping the original labels ensures that coincident projected directions cause no difficulty.
+
+\emph{Endpoint: controlling exceptional directions under slicing.}
+Now $q=k-1$. Put
+\[
+ h=k-2,\qquad g=t-h-\tfrac32>0.
+\]
+Choose $0<a<g/4$ and $h<\ell<h+1/k$. Choose $\beta>0$ sufficiently small, and then $e>0$ sufficiently small, that
+\[
+ a>2\beta,\qquad
+ \eta=(a-2\beta)(\ell-h)-3h\beta-e>0.
+\]
+Write the chart as $w(p)=(1,p)/\sqrt{1+|p|^2}$ and denote its probability law by $\lambda$. This bounded chart preserves ball bounds. Moreover, every affine hyperplane in $p$-space lifts to a linear hyperplane in direction space, so the plate hypothesis gives the affine-hyperplane bound required by Lemma~\ref{ang:weak-radial}.
+
+Apply that lemma with output loss $\delta^{-e}$. It gives a pair relation $G$ with
+$\lambda^{\otimes2}(G^c)\lesssim\delta^{c_e}$ and the stated $\ell$-dimensional radial cap bound. Call $(p,p')$ retained if it belongs to $G$ and $|p-p'|\ge\delta^\beta$; let $B$ be the exceptional pair relation.
+
+For a codimension-$h$ subspace $V$, define
+\[
+ d\lambda_V(p)=\delta^{-h}
+ \mathbf1_{\{|P_{V^\perp}w(p)|\le\delta\}}\,d\lambda(p).
+\]
+The two-vector Haar estimate and the bounded chart give, for every pair relation $R$,
+\[
+ \mathbb E_V\lambda_V^{\otimes2}(R)
+ \lesssim\int_R(|p-p'|+\delta)^{-h}\,d\lambda(p)\,d\lambda(p').
+\]
+Indeed, the two singular values are comparable to $1$ and $|p-p'|$. The $(h+1)$-ball bound, summed over annuli, bounds this integral over $|p-p'|\le\rho$ by $\delta^{-o(1)}\rho$ whenever $\delta\le\rho\le1$. Splitting $G^c$ at distance $\delta^\theta$ therefore gives
+\[
+ \mathbb E_V\lambda_V^{\otimes2}(B)
+ \lesssim
+ \delta^{c_e-\theta h}
+ +\delta^{\theta-o(1)}
+ +\delta^{\beta-o(1)}
+ \le\delta^\kappa
+\]
+for some $\kappa>0$, on choosing $0<\theta<1$ sufficiently small.
+
+We also need to control nearly dependent triples. For two retained anchored pairs $(p,p')$, $(p,p'')$, put
+\[
+ u=p'-p,\quad v=p''-p,\quad
+ \alpha=\left|\frac{u}{|u|}\wedge\frac{v}{|v|}\right|.
+\]
+Subtracting the first unnormalized column from the other two shows
+\[
+ |w(p)\wedge w(p')\wedge w(p'')|
+ \asymp |u\wedge v|=|u|\,|v|\,\alpha.
+\]
+For completeness, the squared unnormalized wedge is
+$|u\wedge v|^2+|p\wedge u\wedge v|^2$, which proves the comparison.
+
+The three singular values satisfy
+$d_1\asymp1$, $d_2\gtrsim\delta^\beta$, and
+$d_3\gtrsim\delta^{2\beta}\alpha$, by the two-column area and the wedge comparison. Thus Lemma~\ref{ang:haar} gives
+\[
+ \delta^{-3h}\Pr_V\{w(p),w(p'),w(p'')
+       \text{ all lie in the direction band}\}
+ \lesssim\delta^{-3h\beta}(\alpha+\delta)^{-h}.
+\]
+For fixed $p,p'$, the weak radial bound, using two antipodal caps, gives
+\[
+ \lambda\{p'':(p,p'')\text{ retained},\ \alpha\le r\}
+ \lesssim\delta^{-e}r^\ell
+ \qquad(\delta\le r\le1).
+\]
+Let $T$ consist of triples with both anchored pairs retained and wedge smaller than $2\delta^a$. Such triples have
+$\alpha\lesssim\delta^{a-2\beta}$. Summing the preceding kernel over angular annuli, including $\alpha\le\delta$, yields
+\[
+ \mathbb E_V\lambda_V^{\otimes3}(T)
+ \lesssim
+ \delta^{-3h\beta-e}
+ \bigl(\delta^{a-2\beta}\bigr)^{\ell-h}
+ =\delta^\eta.
+\]
+Here $\ell>h$ is exactly what makes the angular sum converge.
+
+\emph{Endpoint: triple incidence and tube counting.}
+Apply Lemma~\ref{ang:slice-selection} with this $h$. Write
+$\sigma_{V,z}=\widetilde\mu_{V,z}$ and let $\tau_V\le\lambda_V$ be the restricted chart-label measure. In particular,
+$\sup_V\|\tau_V\|\le\delta^{-o(1)}$.
+Direct integration of the point-band definition gives
+\[
+ \int\|\sigma_{V,z}\|\,dz\le C
+ \quad\text{for every }V.
+\]
+Set
+\[
+ F(V,z,x)=\tau_V\{p:(x,w(p))\in\widetilde E_{V,z}\}.
+\]
+The slice-selection lemma gives a subpower lower bound for its integrated first moment. Since the total integrated point mass is bounded, H\"older gives
+\[
+ J:=\mathbb E_V\int\!\int F(V,z,x)^3
+                 \,d\sigma_{V,z}(x)\,dz
+ \ge\delta^{o(1)}.
+\]
+
+Expand $F^3$ as an integral over three direction labels. By Fubini and the preceding point-mass bound, the contribution from an exceptional anchored pair or from $T$ is at most
+\[
+ C\sup_V\|\tau_V\|\,
+       \mathbb E_V\lambda_V^{\otimes2}(B)
+ +C\mathbb E_V\lambda_V^{\otimes3}(T).
+\]
+This is power-small. Consequently, triples with original wedge at least $2\delta^a$ still contribute subpower mass to $J$. Projection to $V$ and unit normalization perturb each direction by $O(\delta)$; since $a<1$, their determinant in the three-dimensional space $V$ is at least $\delta^a$.
+
+Fix such a slice and triple, and let $A$ be the projected coordinates of their common incident points. Item~3 of slice selection gives, for each original label, a cover of $A$ by $\delta^{-1-o(1)}$ tubes in its projected direction. Lemma~\ref{ang:loomis-whitney} therefore gives
+\[
+ |A|_\delta\lesssim\delta^{-3/2-3a-o(1)}.
+\]
+The point-coordinate ball bound of exponent $t-h$ then bounds the common incident point mass by
+\[
+ \delta^{t-h-3/2-3a-o(1)}
+ =\delta^{g-3a-o(1)}.
+\]
+The total measure of the parameters $(V,z)$ and three restricted direction labels is at most subpower. Integrating this upper bound contradicts their subpower contribution to $J$, because $g-3a>0$.
+
+When $h=0$, all slicing weights equal one and the $z$-integral is over a singleton; the same argument applies. This proves the endpoint and hence the theorem.
+\end{proof}
+
+codex
+{"scores":{"A":{"correctness":5,"overview":5,"structure":5,"justification":5,"economy":4,"notation":4,"explanation":5},"B":{"correctness":5,"overview":5,"structure":5,"justification":5,"economy":4,"notation":5,"explanation":5},"C":{"correctness":4,"overview":4,"structure":3,"justification":3,"economy":2,"notation":3,"explanation":4},"D":{"correctness":5,"overview":5,"structure":5,"justification":5,"economy":5,"notation":5,"explanation":5}},"ranking":["D","B","A","C"],"rationale":"D gives the cleanest complete argument: it announces the planar/three-dimensional dichotomy early, proves the exceptional-pair and bad-triple estimates efficiently, and finishes with a particularly economical integrated mass contradiction. B is equally convincing mathematically and its named claims make the difficult endpoint argument easy to audit, though it is somewhat longer than D. A is also correct and highly explanatory, but its preliminary normalization discussion and notation around the integrated measure make the presentation slightly heavier than B's. C contains the same sound core argument, but it is substantially more diffuse and invokes undefined references such as \\eqref{ang:direction-pair-kernel} and \\eqref{ang:point-slice-total}, forcing the reader to reconstruct justifications that the other proofs supply directly."}
+tokens used
+25,221

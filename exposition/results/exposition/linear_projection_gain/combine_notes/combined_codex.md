@@ -1,0 +1,3 @@
+- From Version 1: the planar/three-dimensional split, weak radial control of exceptional triples, and the common-incidence argument leading to transverse tube counting.
+- From Versions 2 and 3: explicit bookkeeping for scale rounding, restriction to the point support, and preservation of fiber covers. These reductions are compressed into the opening paragraph.
+- The pair-kernel estimate and integrated point-slice bound are proved directly, replacing Version 1’s references to identities absent from the supplied context. The additional gain lemmas asserted in Versions 2 and 3 are not assumed.

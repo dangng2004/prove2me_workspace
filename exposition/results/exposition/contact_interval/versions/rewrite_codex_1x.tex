@@ -1,0 +1,17 @@
+\begin{proof}
+We seek two contacts with the running minimum
+\[
+g(u)=m(u)-qu,\qquad F(u)=\min_{v\in[u,1]}g(v).
+\]
+Comparing minimizers gives
+\[
+0\le F(v)-F(u)\le \Lip(g)(v-u)\qquad(u<v).
+\]
+Moreover, $F$ is locally constant wherever $F<g$: a strict gap keeps minimizers a positive distance to the right.
+
+Since $F(0)=0$ and $F(1)\ge s-q>t-q$, absolute continuity supplies $A\in(0,1)$ with $F'(A)>t-q$. Local constancy forces $F(A)=g(A)$ and contacts $B>A$ arbitrarily close to $A$; otherwise $F$ would be constant on a right neighborhood of $A$. By differentiability, choose such a contact with $B<\min(2A,1)$ and
+\[
+F(w)-F(A)\ge(t-q)(w-A)\qquad(A\le w\le B).
+\]
+Together with $g\ge F$ and $g(A)=F(A)$, this proves \eqref{prep:contact-middle}. For $w\ge B$, monotonicity gives $g(w)\ge F(w)\ge F(B)=g(B)$, proving \eqref{prep:contact-last}. Finally, $m(w)\ge sw\ge qw$ proves \eqref{prep:contact-first}.
+\end{proof}

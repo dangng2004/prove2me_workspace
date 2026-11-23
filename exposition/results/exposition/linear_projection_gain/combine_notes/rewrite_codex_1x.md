@@ -1,0 +1,4 @@
+- Separated the planar argument from the endpoint strategy and explained why three-dimensional slices are needed.
+- Derived the pair kernel and point-band mass bounds directly from the supplied context.
+- Chose auxiliary parameters before using them and grouped the exceptional-pair and bad-triple estimates.
+- Made the final averaging step and the preservation of covers for original direction labels explicit.

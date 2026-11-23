@@ -1,0 +1,11 @@
+{
+  "scores": {
+    "A": {"correctness": 3, "overview": 2, "structure": 2, "justification": 2, "economy": 4, "notation": 4, "explanation": 3},
+    "B": {"correctness": 4, "overview": 3, "structure": 3, "justification": 3, "economy": 4, "notation": 4, "explanation": 3},
+    "C": {"correctness": 5, "overview": 5, "structure": 5, "justification": 5, "economy": 5, "notation": 5, "explanation": 5},
+    "D": {"correctness": 5, "overview": 4, "structure": 3, "justification": 5, "economy": 4, "notation": 4, "explanation": 4},
+    "E": {"correctness": 5, "overview": 3, "structure": 4, "justification": 4, "economy": 5, "notation": 5, "explanation": 4}
+  },
+  "ranking": ["C", "E", "D", "B", "A"],
+  "rationale": "C and E use the same elementary argument: take A as a forward minimizer of m(w)-tw and B as a forward minimizer of m(w)-qw starting just to the right of A. Subtracting h(B)>=h(A) from g(B)<=g(c) then forces B-A<d, which gives B<min(2A,1). Both proofs are fully correct, need only continuity of m, and avoid differentiation entirely. C ranks above E because it opens with a one-line idea, splits the proof into labeled steps (choice of A, choice of B, B is near A), and justifies h(1)>=s-t, which E only asserts as h(0)<h(1). D's running-minimum proof is also complete and careful: it proves F(0)=0, the Lipschitz bound, that minimizers are contact points, and that A is a contact point by closedness. It is heavier, though, since it needs absolute continuity and a differentiability point, and it hides why the result is simple. B and A follow the same route as D but hand-wave the key facts. Examples are that a 'strict gap keeps minimizers a positive distance to the right' and that F is locally constant there. A also leaves F(0)=0 unjustified and gives only a vague Lipschitz argument, so the reader has gaps to fill."
+}

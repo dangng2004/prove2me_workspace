@@ -1,0 +1,23 @@
+\begin{proof}
+We obtain the two slope bounds by successive minimizations.
+Put \(h(u)=m(u)-tu\) and \(g(u)=m(u)-qu\).
+Since \(h(0)=0<h(1)\), continuity gives \(a\in(0,1)\) with \(h(a)<h(1)\).
+Let \(A\) minimize \(h\) on \([a,1]\).
+Then \(0<A<1\), since \(h(A)\le h(a)<h(1)\).
+
+Set \(d=\min(A,1-A)>0\).
+By continuity, choose \(c\in(A,1)\) with
+\(g(c)<g(A)+(t-q)d\), and let \(B\) minimize \(g\) on \([c,1]\).
+Because \(B\ge c>A\) and \(h(B)\ge h(A)\),
+\[
+(t-q)(B-A)\le g(B)-g(A)
+\le g(c)-g(A)<(t-q)d.
+\]
+Thus \(B<A+d\le\min(2A,1)\).
+
+Minimality of \(h(A)\) gives
+\(m(w)-m(A)\ge t(w-A)\) for \(A\le w\le B\);
+minimality of \(g(B)\) gives
+\(m(w)-m(B)\ge q(w-B)\) for \(B\le w\le1\).
+Finally, \(m(w)\ge sw\ge qw\) on \([0,A]\).
+\end{proof}

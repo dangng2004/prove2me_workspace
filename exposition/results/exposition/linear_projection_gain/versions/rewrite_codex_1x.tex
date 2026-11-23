@@ -1,0 +1,148 @@
+\begin{proof}
+We argue by contradiction along a sequence $\delta\to0$ with subpower ball-bound losses, incidence mass at least $\delta^{o(1)}$, and fiber covers of size $\delta^{-q-o(1)}$. Excluding such sequences proves the theorem: otherwise, counterexamples with $\epsilon=c=1/j$ could be chosen at scales $\delta_j\to0$.
+
+Restrict directions to one of finitely many small projective charts, preserving subpower incidence. If $q>k-1$, apply Lemma~\ref{ang:slice-selection} with $h=k-1$. Some slice has subpower incidence; both marginal masses are then bounded above and below by subpower factors. Normalize them. The projected coordinates lie in a plane and satisfy the hypotheses of Lemma~\ref{ang:planar-measures}, with
+\[
+ b=q-h\in(0,\tfrac12],\qquad f=t-h\in(\tfrac12,1).
+\]
+Indeed, item~3 of the slicing lemma supplies the coordinate ball bounds and the $\delta^{-b-o(1)}$ strip cover for each original direction label. This contradicts that lemma.
+
+Henceforth $q=k-1$. Planar slicing would leave direction exponent zero. Instead, we slice to dimension three and find three transverse directions with a large common incident set. Transverse tube counting will contradict the point exponent
+\[
+ h=k-2,\qquad t-h=\tfrac32+g,\qquad g>0.
+\]
+Fix $0<a<g/4$.
+
+Write the chart as $w(p)=(1,p)/\sqrt{1+|p|^2}$, and normalize its direction measure to a probability $\lambda$ on bounded $p$-coordinates. This costs only subpower factors. The chart is bi-Lipschitz, and affine hyperplanes in the chart correspond to linear hyperplanes in the ambient space. Thus $\lambda$ has $(k-1)$-ball and $\zeta$-hyperplane bounds with subpower losses.
+
+Choose
+\[
+ h<\ell<h+\frac1k=\frac{(k-1)^2}{k}.
+\]
+Choose $b_0>0$ sufficiently small, then $e>0$ sufficiently small, so that
+\[
+ b_0<a/2,\qquad
+ \eta:=(a-2b_0)(\ell-h)-e-3hb_0>0.
+\]
+Lemma~\ref{ang:weak-radial} applies for sufficiently small $\delta$ and supplies a pair relation $G$, with
+$(\lambda\otimes\lambda)(G^c)\lesssim\delta^{c_e}$ for some $c_e>0$.
+Call $(p,p')$ retained if it belongs to $G$ and
+$|p-p'|\ge\delta^{b_0}$; denote the exceptional pair relation by $D$.
+For every anchor $p$, retained displacement directions satisfy the cap bound
+$C\delta^{-e}r^\ell$.
+
+We first show that exceptional pairs and nearly dependent retained triples have power-small expected sliced mass. Set
+\[
+ d\lambda_V(p)=\delta^{-h}
+ \mathbf1_{\{|P_{V^\perp}w(p)|\le\delta\}}\,d\lambda(p).
+\]
+For two chart directions, their second singular value is comparable to
+$|p-p'|$. Lemma~\ref{ang:haar} therefore gives the pair kernel bound
+\[
+ \delta^{-2h}\Pr_V\{w(p),w(p')\text{ lie in the direction band}\}
+ \lesssim (|p-p'|+\delta)^{-h}.
+\]
+The $(k-1)$-ball bound and dyadic summation consequently give, for
+$\delta\le R\le1$,
+\[
+ \iint_{|p-p'|\le R}(|p-p'|+\delta)^{-h}
+ \,d\lambda(p)\,d\lambda(p')
+ \lesssim\delta^{-o(1)}R^{q-h}
+ =\delta^{-o(1)}R.
+\]
+Split $G^c$ at distance $\delta^\theta$, where $0<\theta<1$ and
+$c_e-\theta h>0$. The preceding estimates yield
+\[
+ \mathbb E_V\lambda_V^{\otimes2}(D)
+ \lesssim
+ \delta^{c_e-\theta h}
+ +\delta^{\theta-o(1)}
+ +\delta^{b_0-o(1)}.
+ \tag{1}
+\]
+
+For a triple with retained pairs $(p,p')$ and $(p,p'')$, put
+\[
+ \alpha=\left|
+ \frac{p'-p}{|p'-p|}\wedge
+ \frac{p''-p}{|p''-p|}
+ \right|.
+\]
+Subtracting the first unnormalized column from the other two shows that
+\[
+ |w(p)\wedge w(p')\wedge w(p'')|
+ \asymp |p'-p|\,|p''-p|\,\alpha.
+ \tag{2}
+\]
+Indeed, for $u=p'-p$ and $v=p''-p$,
+\[
+ |(1,p)\wedge(0,u)\wedge(0,v)|^2
+ =|u\wedge v|^2+|p\wedge u\wedge v|^2,
+\]
+and $p$ is bounded. Thus a wedge smaller than $2\delta^a$ forces
+$\alpha\lesssim\delta^{a-2b_0}$.
+
+The three singular values satisfy
+$d_1\asymp1$, $d_2\gtrsim\delta^{b_0}$, and
+$d_3\gtrsim\delta^{2b_0}\alpha$: the second bound follows from the first two columns, and the third from (2) and $d_1d_2\lesssim1$.
+Lemma~\ref{ang:haar} now gives
+\[
+ \delta^{-3h}\Pr_V\{\text{all three directions lie in the band}\}
+ \lesssim\delta^{-3hb_0}(\alpha+\delta)^{-h}.
+ \tag{3}
+\]
+For fixed $p,p'$, the condition $\alpha\le r$ places the displacement from $p$ to $p''$ in two caps of radius $O(r)$. Hence the weak radial bound gives mass at most $C\delta^{-e}r^\ell$ among retained pairs.
+Let $T$ comprise the triples with both anchored pairs retained and wedge smaller than $2\delta^a$. Summing angular annuli in (3), including $\alpha\le\delta$, yields
+\[
+ \mathbb E_V\lambda_V^{\otimes3}(T)
+ \lesssim
+ \delta^{-3hb_0-e}
+ \bigl(\delta^{a-2b_0}\bigr)^{\ell-h}
+ =\delta^\eta.
+ \tag{4}
+\]
+
+Apply Lemma~\ref{ang:slice-selection} to $\mu$ and $w_\#\lambda$.
+Write $\widetilde\lambda_V$ for its restricted direction measure in chart coordinates, and put
+\[
+ F(V,z,x)=
+ \int\mathbf1_{\widetilde E_{V,z}}(x,w(p))\,
+ d\widetilde\lambda_V(p).
+\]
+Its integrated first moment is at least subpower. Also, directly from the point-band definition and the volume of an $h$-dimensional $\delta$-ball,
+\[
+ \int\|\widetilde\mu_{V,z}\|\,dz\le C
+ \quad\text{for every }V.
+ \tag{5}
+\]
+Hölder's inequality therefore implies
+\[
+ \mathbb E_V\int\!\int F(V,z,x)^3
+ \,d\widetilde\mu_{V,z}(x)\,dz\ge\delta^{o(1)}.
+ \tag{6}
+\]
+This is the total mass of triples sharing an incident point.
+
+The slicing lemma gives
+$\widetilde\lambda_V\le\lambda_V$ and
+$M:=\sup_V\|\widetilde\lambda_V\|\le\delta^{-o(1)}$.
+Dropping incidence indicators and using (5), the contribution to (6) from triples in $T$ is at most the right side of (4) times a constant. The contribution with either anchored pair in $D$ is at most
+\[
+ 2CM\,\mathbb E_V\lambda_V^{\otimes2}(D).
+\]
+By (1), both discarded contributions are power-small. Thus subpower triple incidence remains with original wedge at least $2\delta^a$.
+
+On the direction band, projection to $V$ followed by normalization changes each direction by $O(\delta)$. Since $a<1$, these remaining triples have determinant at least $\delta^a$ in the three-dimensional space $V$.
+
+The total measure of the parameters $(V,z,p,p',p'')$ is at most a subpower factor, because the $z$-domain is bounded and the restricted direction masses are uniformly bounded by $M$. Consequently, some slice and some remaining triple have a common incident point set of sliced mass at least subpower. Let $A$ be its projected coordinates. The coordinate ball bound from item~3 of the slicing lemma gives
+\[
+ |A|_\delta\ge\delta^{-(t-h)+o(1)}.
+\]
+For each of the three original direction labels, that same item covers $A$ by at most $\delta^{-1-o(1)}$ tubes in its projected direction. Lemma~\ref{ang:loomis-whitney} gives
+\[
+ |A|_\delta\le\delta^{-3/2-3a-o(1)}.
+\]
+These bounds contradict $t-h=3/2+g$ and $3a<g$.
+
+When $k=2$, $h=0$: the slicing weights equal one and the $z$-integral is over a singleton. All estimates above remain valid.
+\end{proof}

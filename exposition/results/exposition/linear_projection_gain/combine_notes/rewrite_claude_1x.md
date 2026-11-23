@@ -1,0 +1,8 @@
+- Added an overview that explains why the endpoint $q=k-1$ needs three-dimensional slices, and that names the key difficulty (finding quantitatively transverse triples) and where the plate hypothesis enters.
+- Split the proof into labelled steps: reduction, the non-endpoint case, endpoint setup, exceptional pairs, nearly dependent triples, selecting a good triple, and the Loomis–Whitney contradiction.
+- The original cited two displayed equations (a direction-pair kernel and a point-slice total) that are not in the provided context. I derived both inline: the kernel bound $K_2\le C(|u|+\delta)^{-h}$ comes from the Haar lemma plus the wedge identity, and the bound $\int\|\mu_{V,z}\|dz\le C$ comes from Fubini.
+- Gave one wedge identity that covers both the 2- and 3-vector cases and serves the pair and triple kernel bounds.
+- Simplified the exceptional-pair transfer: the split at $\delta^\theta$ is now explicit, without the separate $\theta\ge1$ discussion.
+- Collected the order of constant choices ($a,\ell\to b_0\to e\to c_e\to\theta$) in one place.
+- Spelled out the slice normalization (why both masses are $\ge\delta^{o(1)}$) once, and reused it in both cases.
+- Justified the plate-to-affine-hyperplane transfer (affine hyperplanes map into linear ones under a Lipschitz map). Used a single cap instead of a projective chart to avoid label ambiguity.

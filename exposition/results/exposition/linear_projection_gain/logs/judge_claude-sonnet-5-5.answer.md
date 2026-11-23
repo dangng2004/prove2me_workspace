@@ -1,0 +1,11 @@
+{
+  "scores": {
+    "A": {"correctness": 1, "overview": 2, "structure": 3, "justification": 3, "economy": 3, "notation": 3, "explanation": 1},
+    "B": {"correctness": 2, "overview": 2, "structure": 3, "justification": 4, "economy": 2, "notation": 3, "explanation": 1},
+    "C": {"correctness": 3, "overview": 3, "structure": 2, "justification": 3, "economy": 4, "notation": 3, "explanation": 3},
+    "D": {"correctness": 4, "overview": 4, "structure": 4, "justification": 4, "economy": 4, "notation": 4, "explanation": 4},
+    "E": {"correctness": 5, "overview": 5, "structure": 5, "justification": 5, "economy": 4, "notation": 5, "explanation": 5}
+  },
+  "ranking": ["E", "D", "C", "B", "A"],
+  "rationale": "Proofs A and B only reduce the theorem to a dyadic or normalized version that is not among the cited context results (A cites unspecified earlier work; B states two unproved dyadic lemmas that are essentially the theorem). Neither proves the mathematical content, so both have low correctness. B at least carries out the rescaling bookkeeping explicitly. Proofs C, D and E carry out the real argument: slicing, the planar obstruction for q>k-1, and for the endpoint the plate hypothesis, weak radial estimate, Haar kernels, Hölder, and transverse tube counting. C is compressed and relies on equations that are never defined (the direction-pair-kernel and point-slice-total labels), and it has no proper overview. D is self-contained, derives the kernels and point-slice total, and orders the steps clearly. E is the most complete and readable. It opens with an overview naming the idea, fixes the constants in order, verifies the transfer of the plate bound to the chart, isolates the kernel estimates as labeled claims, and says where each hypothesis is used."
+}

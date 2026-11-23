@@ -1,0 +1,9 @@
+- **Base route (Version 1).** I built on Version 1, the only version that gives the actual mathematics. It slices to planes plus the planar obstruction off the endpoint, and at the endpoint it uses 3-dimensional slices, weak radial non-concentration, Haar kernel bounds, Hölder on triple incidences, and Loomis–Whitney. I kept its order of constants ($a \to b_0 \to e \to c_e \to \theta$) and made that order explicit at the start of Step 2.
+- **Gaps closed in Version 1.** Version 1 cites two equations that are not in the provided context, `ang:direction-pair-kernel` and `ang:point-slice-total`. I replaced them with Claims B, C and D, derived directly from the Haar band lemma and Tonelli. I also wrote out two arguments Version 1 only asserts:
+  - the singular-value bounds ($d_1d_2\ge|w_1\wedge w_2|$, $d_3=$ wedge$/(d_1d_2)$);
+  - the transfer of the linear plate bound to affine hyperplanes in chart coordinates.
+- **Taken from Versions 2 and 3.**
+  - Version 3 (Step 3) supplied the chart reduction: a finite cap cover, then a union bound, then restricting $\nu$ and $E$, noting that fibers only shrink. This makes Version 1's "choose one of finitely many charts" precise.
+  - Version 2 supplied the formula $\dist(w,H)=|\langle n,w\rangle|$, which underlies the plate computation in Step 2.
+  - Beyond these, Versions 2 and 3 are mostly dyadic and rescaling bookkeeping reducing to lemmas absent from the context. The sequence and $o(1)$ formulation makes that bookkeeping unnecessary, so I left it out.
+- **Structure.** I added an overview that explains why the endpoint needs a different argument ($b=0$ falls outside the planar range) and where the plate hypothesis is used (it rules out near-coplanar triples). The endpoint is split into labelled claims with stated roles. I named the auxiliary sets: retained pairs, $\mathcal T$, good triples.

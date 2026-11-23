@@ -1,0 +1,3 @@
+- Introduced the two-contact strategy immediately.
+- Isolated local constancy as the reason both contacts exist.
+- Made the final deductions explicit while keeping routine estimates compact.

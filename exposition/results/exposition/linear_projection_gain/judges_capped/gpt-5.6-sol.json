@@ -1,0 +1,65 @@
+{
+  "model": "gpt-5.6-sol",
+  "labels": {
+    "A": "combined_codex_1x",
+    "B": "combined_codex",
+    "C": "combined_claude",
+    "D": "original",
+    "E": "combined_claude_1x"
+  },
+  "ranking": [
+    "combined_claude_1x",
+    "combined_codex",
+    "combined_claude",
+    "combined_codex_1x",
+    "original"
+  ],
+  "scores": {
+    "combined_codex_1x": {
+      "correctness": 5,
+      "overview": 4,
+      "structure": 4,
+      "justification": 4,
+      "economy": 5,
+      "notation": 5,
+      "explanation": 4
+    },
+    "combined_codex": {
+      "correctness": 5,
+      "overview": 5,
+      "structure": 5,
+      "justification": 5,
+      "economy": 4,
+      "notation": 5,
+      "explanation": 5
+    },
+    "combined_claude": {
+      "correctness": 5,
+      "overview": 5,
+      "structure": 5,
+      "justification": 5,
+      "economy": 4,
+      "notation": 5,
+      "explanation": 5
+    },
+    "original": {
+      "correctness": 4,
+      "overview": 4,
+      "structure": 3,
+      "justification": 3,
+      "economy": 5,
+      "notation": 3,
+      "explanation": 4
+    },
+    "combined_claude_1x": {
+      "correctness": 5,
+      "overview": 5,
+      "structure": 5,
+      "justification": 5,
+      "economy": 5,
+      "notation": 5,
+      "explanation": 5
+    }
+  },
+  "rationale": "E gives the best balance of completeness and economy: its kernel estimates, exceptional-pair/triple bounds, H\u00f6lder extraction, and final covering contradiction are all explicit without excessive bookkeeping. B is equally rigorous and especially careful about normalization and parameter-mass bounds, but the dyadic-scale reduction and some expanded intermediate estimates make it slightly less economical. C is exceptionally transparent and self-contained, with a strong overview and well-labeled claims, though it is the longest and repeats more motivational and technical detail than a research reader strictly needs. A is correct and elegant but compresses several local arguments, particularly the transfer of exceptional sets and the final integration contradiction. D contains the right argument, but it cites undefined equations such as `ang:direction-pair-kernel` and `ang:point-slice-total`, forcing the reader to reconstruct essential estimates and weakening both its notation and local justification."
+}

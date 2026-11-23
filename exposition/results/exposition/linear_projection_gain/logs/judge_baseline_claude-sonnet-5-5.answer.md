@@ -1,0 +1,10 @@
+{
+  "scores": {
+    "A": {"correctness": 5, "overview": 5, "structure": 5, "justification": 5, "economy": 4, "notation": 4, "explanation": 5},
+    "B": {"correctness": 5, "overview": 5, "structure": 5, "justification": 4, "economy": 4, "notation": 4, "explanation": 4},
+    "C": {"correctness": 4, "overview": 3, "structure": 3, "justification": 3, "economy": 4, "notation": 4, "explanation": 3},
+    "D": {"correctness": 3, "overview": 3, "structure": 2, "justification": 3, "economy": 2, "notation": 3, "explanation": 3}
+  },
+  "ranking": ["A", "B", "C", "D"],
+  "rationale": "A and B are both correct and follow the same route: they slice to a plane when q>k-1, and to dimension three at the endpoint. At the endpoint they run a weak-radial argument to exclude nearly dependent triples, and finish with Loomis-Whitney against the t-ball bound. A is slightly ahead. It numbers its steps (Step 0 to Step 6). It derives the wedge identity and the K_2 kernel explicitly. It states the order in which the constants a, l, b0, e, c_e and theta are chosen. It explains the Holder step and the use of the a priori mass bound, and it treats the exceptional pairs as a separate claim. B has the same mathematics and a good overview, with a clean Claim A/B/C split. It is a little less explicit about constant dependencies and about why the exceptional-pair mass is small. C is mathematically sound, but it is terse and has no step labels. Several justifications are only sketched, such as the pair-kernel bound and the singular-value bounds. It also does not say clearly why the exceptional sets are small before it uses them. D cites equations that it never states or proves, namely ang:direction-pair-kernel and ang:point-slice-total. That leaves a real gap for a reader who has only the given context. It is also verbose, with side remarks about theta>=1, and its structure is a long unbroken narrative, so it ranks last."
+}

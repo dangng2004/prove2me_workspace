@@ -1,0 +1,65 @@
+{
+  "model": "gpt-5.6-sol",
+  "labels": {
+    "A": "combined_claude_1x",
+    "B": "combined_codex_1x",
+    "C": "rewrite_codex_1x",
+    "D": "rewrite_claude_1x",
+    "E": "original"
+  },
+  "ranking": [
+    "combined_claude_1x",
+    "combined_codex_1x",
+    "rewrite_claude_1x",
+    "original",
+    "rewrite_codex_1x"
+  ],
+  "scores": {
+    "combined_claude_1x": {
+      "correctness": 5,
+      "overview": 5,
+      "structure": 5,
+      "justification": 5,
+      "economy": 5,
+      "notation": 5,
+      "explanation": 5
+    },
+    "combined_codex_1x": {
+      "correctness": 5,
+      "overview": 4,
+      "structure": 4,
+      "justification": 5,
+      "economy": 5,
+      "notation": 5,
+      "explanation": 4
+    },
+    "rewrite_codex_1x": {
+      "correctness": 5,
+      "overview": 4,
+      "structure": 3,
+      "justification": 3,
+      "economy": 4,
+      "notation": 4,
+      "explanation": 4
+    },
+    "rewrite_claude_1x": {
+      "correctness": 5,
+      "overview": 5,
+      "structure": 4,
+      "justification": 5,
+      "economy": 4,
+      "notation": 5,
+      "explanation": 5
+    },
+    "original": {
+      "correctness": 5,
+      "overview": 3,
+      "structure": 3,
+      "justification": 4,
+      "economy": 4,
+      "notation": 4,
+      "explanation": 4
+    }
+  },
+  "rationale": "All five proofs are mathematically correct, but A presents the simplest successive-minimization argument with an explicit overview, clearly labeled stages, and a transparent explanation of why B lies near A. B uses the same efficient argument and is equally rigorous, though its organization and explanation of the guiding idea are slightly less developed. D gives the strongest running-minimum proof: it defines contact points, proves the Lipschitz estimate, and justifies the existence of nearby contacts, but this machinery is less economical than the direct minimization method. E and C are valid but compress several local arguments; E gives somewhat more detail about the Lipschitz property, while C leaves \u201ccomparing minimizers\u201d and the local-constancy/contact reasoning especially terse."
+}

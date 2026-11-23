@@ -1,0 +1,11 @@
+\begin{proof}
+\emph{Idea:} $A$ and $B$ are forward minimizers of $m(w)-tw$ and $m(w)-qw$. Only continuity of $m$ is used.
+
+Let $h(w)=m(w)-tw$ and $g(w)=m(w)-qw$. Then \eqref{prep:contact-first} holds for any $A$: $m(w)\ge sw\ge qw$.
+
+\emph{Choice of $A$.} As $h(0)=0<s-t\le h(1)$, continuity gives $a\in(0,1)$ with $h(a)<h(1)$. Let $A$ minimize $h$ on $[a,1]$. Then $A>0$, $A<1$ (since $h(A)\le h(a)<h(1)$), and $h\ge h(A)$ on $[A,1]$ gives \eqref{prep:contact-middle}.
+
+\emph{Choice of $B$.} Let $d=\tfrac12\min(A,1-A)$. Continuity at $A$ gives $c\in(A,1)$ with $g(c)<g(A)+(t-q)d$. Let $B$ minimize $g$ on $[c,1]$. Then $B>A$, and $g\ge g(B)$ on $[B,1]$ gives \eqref{prep:contact-last}.
+
+\emph{$B$ is near $A$.} Subtracting $h(B)\ge h(A)$ from $g(B)\le g(c)<g(A)+(t-q)d$ yields $(t-q)(B-A)<(t-q)d$. Hence $B<A+d<\min(2A,1)$.
+\end{proof}

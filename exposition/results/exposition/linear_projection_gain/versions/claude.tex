@@ -1,0 +1,77 @@
+\begin{lemma}[Dyadic non-endpoint gain]\label{lg:nonendpoint}
+Let $h\ge1$ be an integer, $h<q\le h+\frac12$, $q<t<h+1$, $C\ge0$. There are $\epsilon,c,\delta_0>0$ such that for every $N$ with $D=2^{-N}<\delta_0$ and all $(\mu,\nu,E)$ in $\mathbb R^{h+2}\times S^{h+1}$ satisfying the dyadic hypotheses at scale $D$ with loss exponent $\epsilon$, exponents $(t,q)$ and width $C$, one has $(\mu\otimes\nu)(E)\le D^{c}$.
+\end{lemma}
+
+\begin{lemma}[Dyadic endpoint angular gain]\label{lg:angular}
+Let $h\ge0$ be an integer, $h+\frac32<t<h+2$, $\zeta>0$, $C'\ge0$. There are $\epsilon,c>0$ and $N_0$ such that the following holds for $N\ge N_0$ and $D=2^{-N}$. Let $(\mu,\nu)$ on $\mathbb R^{h+3}\times S^{h+2}$ satisfy the ball, support and plate hypotheses above at scale $D$ with loss exponent $\epsilon$ and exponents $(t,h+1)$, let $E$ be measurable with first coordinates in $\{|x|\le\frac14\}$, and let $\{a_i\}_{i\in I}$ be a family of bounded anchors. Suppose that to each $w$ there is assigned a finite set $J(w)\subset I$ with $\#J(w)\le D^{-(h+1)-\epsilon}$ such that every $(x,w)\in E$ satisfies $|P_{w^\perp}(x-a_i)|\le C'D$ for some $i\in J(w)$. Then $(\mu\otimes\nu)(E)\le D^c$.
+\end{lemma}
+
+\begin{lemma}[Preparation of the tube relation]\label{lg:prepare}
+Let $\mu$ be a finite measure, $E$ a measurable relation with first coordinates in $\{|x|\le\frac14\}$, $\delta>0$ and $M\in\mathbb N$, and suppose every fiber $E_w$ is covered by at most $M$ tubes of width $C\delta$ parallel to $w$. Then there are a finite set $G$ of bounded anchors, a measurable relation $F\subset E$ and, for each $w$, a set $J(w)\subset G$ with $\#J(w)\le M$, such that each fiber $(E\setminus F)_w$ is $\mu$-null and every $(x,w)\in F$ satisfies $|P_{w^\perp}(x-a)|\le (2C+1)\delta$ for some $a\in J(w)$.
+\end{lemma}
+
+The non-endpoint lemma rests on the planar discretized Furstenberg estimate (Theorem~\ref{ang:furstenberg}), and the endpoint lemma on transverse tube counting (Lemma~\ref{ang:loomis-whitney}).
+
+\begin{proof}
+\emph{Step 1: the endpoint dyadic statement for arbitrary covers.} Let $h\ge0$, $h+\frac32<t<h+2$, $\zeta>0$, $C\ge0$. We claim that the conclusion of Lemma~\ref{lg:nonendpoint} holds in $\mathbb R^{h+3}\times S^{h+2}$ with $q=h+1$, for $N\ge N_0$, when the plate condition is added to the dyadic hypotheses. Apply Lemma~\ref{lg:angular} with width constant $C'=2C+1$ to obtain $\epsilon,c,N_0$. Given $(\mu,\nu,E)$ at scale $D=2^{-N}$, $N\ge N_0$, apply Lemma~\ref{lg:prepare} with $M=\lfloor D^{-(h+1)-\epsilon}\rfloor$. This gives a finite anchor set $G$, a relation $F\subset E$ and sets $J(w)\subset G$ with $\#J(w)\le M\le D^{-(h+1)-\epsilon}$ such that every $(x,w)\in F$ lies in a tube of width $(2C+1)D$ parallel to $w$ about some anchor of $J(w)$. Since every fiber $(E\setminus F)_w$ is $\mu$-null, Fubini gives $(\mu\otimes\nu)(E\setminus F)=0$, hence $(\mu\otimes\nu)(F)=(\mu\otimes\nu)(E)$. The relation $F$ inherits the support condition from $E$, and Lemma~\ref{lg:angular} applied to $F$ with the anchors $G$ gives $(\mu\otimes\nu)(E)=(\mu\otimes\nu)(F)\le D^c$.
+
+Similarly, Lemma~\ref{lg:nonendpoint} gives the dyadic statement in the non-endpoint range. Choose $N_0$ with $2^{-N}<\delta_0$ for $N\ge N_0$. A plate hypothesis is simply not used there.
+
+\emph{Step 2: case split.} If $q=k-1$, write $k=h+2$ with $h\ge0$. Then $q=h+1$ and $h+\frac32<t<h+2$. The plate hypothesis \eqref{ang:endpoint-plate} is in force, since for a hyperplane with unit normal $n$ one has $\dist(w,H)=|\langle n,w\rangle|$. Step 1 provides the dyadic statement in $\mathbb R^{h+3}=\mathbb R^{k+1}$ with plate condition. If $q>k-1$, write $k=h+1$ with $h\ge1$. Then $h<q\le h+\frac12$, and $q\le k-\frac12<t<h+1$. Lemma~\ref{lg:nonendpoint} provides the dyadic statement in $\mathbb R^{h+2}=\mathbb R^{k+1}$. In either case we have, in $\mathbb R^{d}$ with $d=k+1$, constants $\epsilon_0,c_0>0$ and $N_0$ such that for $N\ge N_0$ every triple satisfying the dyadic hypotheses at scale $2^{-N}$ with loss exponent $\epsilon_0$ (together with the plate condition in the endpoint case) has product mass at most $2^{-Nc_0}$. It remains to pass from this dyadic, normalized form to the theorem at arbitrary scales and for support in a ball of radius $R$. Here only $t,q\ge0$ and $C\ge0$ are used.
+
+\emph{Step 3: choice of constants.} Put $\epsilon=\epsilon_0/2$, $c=c_0/2$ and $s=1/(4(R+1))$, so that $0<s\le1$ and $sR\le\frac14$. Put
+\[
+ K=2^{\epsilon}s^{-t}+2^{q+\epsilon}.
+\]
+Then $K$ dominates each of $2^\epsilon s^{-t}$, $2^{q+\epsilon}$, $2^\epsilon$ and $s^{-t}$, because all these quantities are at least $1$. Since $2^{N\epsilon}\to\infty$, choose $N_1$ with $2^{N\epsilon}\ge K$ for all $N\ge N_1$. Set $\delta_0=\min(\frac14,2^{-(N_0+N_1+1)})$.
+
+\emph{Step 4: the dyadic scale.} Let $0<\delta<\delta_0$ and let $\mu,\nu,E$ satisfy the hypotheses of the theorem. Choose $N$ with $2^N\le1/\delta<2^{N+1}$ and put $D=2^{-N}$. Then $D\le1$ and $\delta\le D<2\delta$. Moreover $2^{N_0+N_1+1}<1/\delta<2^{N+1}$, so $N\ge N_0+N_1$. Let $A=D^{-\epsilon}=2^{N\epsilon}$. Then $A\ge K\ge1$ and $D^{-\epsilon_0}=A^2$. Since $D/2\le\delta$, for every $e\ge0$
+\[
+ \delta^{-e}\le (D/2)^{-e}=2^{e}D^{-e};\qquad\text{in particular}\quad \delta^{-\epsilon}\le 2^\epsilon A .
+\]
+
+\emph{Step 5: rescaling.} Let $f(x)=sx$, $\mu'=f_\#\mu$, and
+\[
+ E'=\{(y,w):|y|\le\tfrac14,\ (s^{-1}y,w)\in E\},
+\]
+which is measurable. Then $\mu'$ has the same total mass as $\mu$, so it is a subprobability. Since $\mu$ is concentrated on $\overline B(0,R)$ and $sR\le\frac14$, the measure $\mu'$ is concentrated on $\{|y|\le\frac14\}$. By construction every point of $E'$ has first coordinate in that ball. We verify the dyadic hypotheses for $(\mu',\nu,E')$ at scale $D$ with loss exponent $\epsilon_0$.
+
+\emph{Point balls.} Let $0\le j\le N$ and $r=2^{-j}$, so $D\le r\le1$. Since $f^{-1}(B(x,r))=B(s^{-1}x,r/s)$, we have $\mu'(B(x,r))=\mu(B(s^{-1}x,r/s))$. If $r/s\le1$, then $\delta\le r\le r/s$ and the $t$-ball bound for $\mu$ gives
+\[
+ \mu'(B(x,r))\le\delta^{-\epsilon}s^{-t}r^t\le(2^\epsilon s^{-t})A\,r^t\le KA\,r^t\le A^2r^t=D^{-\epsilon_0}r^t .
+\]
+If $r/s>1$, then $s<r$, and
+\[
+ \mu'(B(x,r))\le1=s^{-t}s^t\le A\,r^t\le A^2r^t ,
+\]
+using $s^{-t}\le K\le A$, $s^t\le r^t$ and $A\ge1$.
+
+\emph{Direction balls and plates.} For $0\le j\le N$ and $r=2^{-j}$ we have $\delta\le D\le r\le1$. The $q$-ball bound for $\nu$ gives $\nu(B(w,r))\le\delta^{-\epsilon}r^q\le 2^\epsilon A r^q\le KAr^q\le A^2r^q$. In the endpoint case the same computation applies, for $D\le r\le1$, to the plate bound $\nu\{u:|\langle n,u\rangle|\le r\}\le\delta^{-\epsilon}r^\zeta\le A^2r^\zeta$.
+
+\emph{Tube covers.} Fix $w$, and let $T$ be the set of at most $\delta^{-q-\epsilon}$ anchors covering $E_w$ by tubes of width $C\delta$. Take the anchors $sT$. Their number is at most
+\[
+ \delta^{-q-\epsilon}\le 2^{q+\epsilon}D^{-q-\epsilon}\le K D^{-q-\epsilon}\le A\,D^{-q-\epsilon}=D^{-q-\epsilon_0}.
+\]
+If $(y,w)\in E'$, then $x=s^{-1}y\in E_w$, so $|P_{w^\perp}(x-a)|\le C\delta$ for some $a\in T$. By linearity of $P_{w^\perp}$,
+\[
+ |P_{w^\perp}(y-sa)|=s\,|P_{w^\perp}(x-a)|\le C\delta\le CD,
+\]
+using $s\le1$ and $\delta\le D$. Thus $E'_w$ is covered by at most $D^{-q-\epsilon_0}$ tubes of width $CD$ parallel to $w$.
+
+Since $N\ge N_0$, Step 2 yields
+\[
+ (\mu'\otimes\nu)(E')\le D^{c_0}.
+\]
+
+\emph{Step 6: comparison with the original relation.} We have $\mu'\otimes\nu=(f\times\mathrm{id})_\#(\mu\otimes\nu)$, so $(\mu'\otimes\nu)(E')=(\mu\otimes\nu)((f\times\mathrm{id})^{-1}E')$. If $(x,w)\in E$ and $|x|\le R$, then $|sx|\le sR\le\frac14$ and $(s^{-1}sx,w)=(x,w)\in E$, so $(x,w)\in(f\times\mathrm{id})^{-1}E'$. Hence
+\[
+ E\subset (f\times\mathrm{id})^{-1}E'\ \cup\ \bigl(\overline B(0,R)^c\times S^k\bigr).
+\]
+The second set has $(\mu\otimes\nu)$-measure $\mu(\overline B(0,R)^c)\,\nu(S^k)=0$. Therefore $(\mu\otimes\nu)(E)\le(\mu'\otimes\nu)(E')\le D^{c_0}$.
+
+\emph{Step 7: return to the scale $\delta$.} Since $\delta\le\frac14$ we have $\sqrt\delta\le\frac12$, so $D\le2\delta=2\sqrt\delta\cdot\sqrt\delta\le\sqrt\delta$. Hence
+\[
+ (\mu\otimes\nu)(E)\le D^{c_0}\le\delta^{c_0/2}=\delta^{c}.
+\]
+The constants $\epsilon,c,\delta_0$ depend only on $k,q,t,C,R$ and, at the endpoint, on $\zeta$. This proves the theorem.
+\end{proof}

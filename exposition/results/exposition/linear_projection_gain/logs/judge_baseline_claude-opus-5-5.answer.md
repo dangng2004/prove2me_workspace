@@ -1,0 +1,10 @@
+{
+  "scores": {
+    "A": {"correctness": 4, "overview": 3, "structure": 3, "justification": 3, "economy": 4, "notation": 4, "explanation": 3},
+    "B": {"correctness": 4, "overview": 3, "structure": 2, "justification": 3, "economy": 3, "notation": 2, "explanation": 3},
+    "C": {"correctness": 5, "overview": 5, "structure": 5, "justification": 5, "economy": 4, "notation": 4, "explanation": 5},
+    "D": {"correctness": 5, "overview": 5, "structure": 5, "justification": 5, "economy": 4, "notation": 5, "explanation": 5}
+  },
+  "ranking": ["C", "D", "A", "B"],
+  "rationale": "All four proofs follow the same route: plane slicing plus the planar obstruction above the endpoint, and at q=k-1 three-dimensional slicing, weak-radial control of nearly dependent triples, Hölder on F^3, and Loomis-Whitney. C and D are complete and each opens with an overview that names the real difficulty: finding quantitatively transverse triples, which is where the plate hypothesis enters. C stands out for its explicit 'order of constants' paragraph, its Step 0 argument that a selected slice can be normalized (both masses are bounded below because the incidence is at most their product), and its explicit check that |v_i - w(p_i)| = O(delta) preserves the determinant. D is equally rigorous: Claim A proves the bound on the integral of ||mu_{V,z}|| dz and the singular-value facts, Claim B gives an explicit two-sided wedge comparison, and it fixes a < g/3, which is the correct threshold. Its claim-based structure is very slightly less linear than C's. A is correct and economical but compressed. It never says how a selected slice is normalized, it applies 'integrating this upper bound' loosely, and it has no labeled steps or explicit dependency chain among constants beyond one display. B carries the same mathematics but cites equations that do not exist in the document (ang:direction-pair-kernel, ang:point-slice-total), adds an unneeded discussion of theta >= 1, and runs as one long block without signposting, so it is the hardest to read and check."
+}

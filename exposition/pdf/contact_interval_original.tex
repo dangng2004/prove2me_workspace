@@ -1,0 +1,40 @@
+\documentclass[11pt,reqno]{amsart}
+\input{preamble}
+\renewcommand{\thetheorem}{\arabic{theorem}}
+\renewcommand{\theequation}{\arabic{equation}}
+\title{A contact interval (Lemma 5.2): the original proof}
+\begin{document}
+\maketitle
+\noindent\emph{Source.} The statement is from \emph{The Falconer distance conjecture in all dimensions} (OpenAI, 23 September 2026). The proof is verbatim from \emph{The Falconer distance conjecture in all dimensions} (OpenAI, 23 September 2026). Typeset for comparison.
+
+\section*{Statement}
+\begin{lemma}[A contact interval]\label{prep:contact}
+Suppose $m:[0,1]\to\R$ is nondecreasing and Lipschitz,
+$m(0)=0$, and $m(u)\ge su$. If $q<t<s$, there exist
+$0<A<B<1$, with $B<2A$, such that
+\begin{align}
+ m(w)&\ge qw &&(0\le w\le A),\label{prep:contact-first}\\
+ m(w)-m(A)&\ge t(w-A)&&(A\le w\le B),\label{prep:contact-middle}\\
+ m(w)-m(B)&\ge q(w-B)&&(B\le w\le1).\label{prep:contact-last}
+\end{align}
+\end{lemma}
+
+\section*{Proof}
+\begin{proof}
+Put $g(u)=m(u)-qu$ and $F(u)=\min_{u\le v\le1}g(v)$.
+The function $F$ is nondecreasing and Lipschitz: if $u<v$, a minimizer
+for $F(u)$ either lies in $[v,1]$, or comparison with $g(v)$ bounds
+$F(v)-F(u)$ by $\Lip(g)(v-u)$. Moreover, $F(0)=0$ and
+$F(1)\ge s-q>t-q$. Absolute continuity gives an interior
+differentiability point $A$ at which $F'(A)>t-q$.
+At this point $F(A)=g(A)$, since a strict gap would force the minimum
+to be attained a fixed distance to the right and would make $F$ locally
+constant. There are contact points $B>A$ arbitrarily close to $A$:
+otherwise $F$ would be constant immediately to the right of $A$.
+Choose such a $B<\min(2A,1)$ so close that
+$F(w)-F(A)\ge(t-q)(w-A)$ on $[A,B]$.
+Using $g(w)\ge F(w)$ proves Equation~\eqref{prep:contact-middle}.
+The first inequality follows from $m(w)\ge sw$, and the last follows
+from $g(w)\ge F(B)=g(B)$ for $w\ge B$.
+\end{proof}
+\end{document}

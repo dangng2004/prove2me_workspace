@@ -1,0 +1,36 @@
+\begin{proof}
+We use only two standard facts: a continuous function on a nonempty compact interval attains its minimum, and the following elementary consequence of continuity.
+
+\emph{Claim.} Let $a<b$ and let $f$ be continuous on $[a,b]$ with $f(a)<y$. Then there is $x\in(a,b)$ with $f(x)<y$.
+
+To see this, use continuity at $a$ to choose $\delta>0$ such that $|f(x)-f(a)|<y-f(a)$ whenever $x\in[a,b]$ and $|x-a|<\delta$. Put $x=a+\tfrac12\min(\delta,b-a)$. Then $x\in(a,b)$ and $f(x)<f(a)+(y-f(a))=y$.
+
+Since $m$ is Lipschitz on $[0,1]$, it is continuous there. Monotonicity of $m$ is not needed. Define the continuous functions
+\[
+ h(u)=m(u)-tu,\qquad g(u)=m(u)-qu\qquad(u\in[0,1]).
+\]
+
+\emph{Construction of $A$.} We have $h(0)=m(0)=0$. Also $m(1)\ge s$ and $t<s$, so $h(1)=m(1)-t\ge s-t>0$. Hence $h(0)<h(1)$. Applying the Claim to $h$ on $[0,1]$ with $y=h(1)$ gives $a\in(0,1)$ with $h(a)<h(1)$. Let $A$ be a point at which $h$ attains its minimum on $[a,1]$. Then $A\ge a>0$. Moreover $h(A)\le h(a)<h(1)$, so $A\neq 1$, i.e. $A<1$.
+
+\emph{Construction of $B$.} Put $d=\tfrac12\min(A,1-A)$, so that $0<d<A$ and $d<1-A$. Since $t>q$ and $d>0$, we have $g(A)<g(A)+(t-q)d$. Applying the Claim to $g$ on $[A,1]$ gives $c\in(A,1)$ with
+\[
+ g(c)<g(A)+(t-q)d .
+\]
+Let $B$ be a point at which $g$ attains its minimum on $[c,1]$. Then $B\ge c>A$. Two consequences of the minimality properties will be used: $g(B)\le g(c)$, and $h(A)\le h(B)$, the latter because $B\in[A,1]\subset[a,1]$.
+
+\emph{$B$ is close to $A$.} We show that $B<A+d$. Suppose instead that $B\ge A+d$. The inequality $h(A)\le h(B)$ reads $m(A)-tA\le m(B)-tB$. The inequalities $g(B)\le g(c)<g(A)+(t-q)d$ give $m(B)-qB<m(A)-qA+(t-q)d$. Adding these two inequalities and cancelling $m(A)+m(B)$ yields
+\[
+ (t-q)(B-A)<(t-q)d .
+\]
+On the other hand, $t-q>0$ and $B-A-d\ge 0$ give $(t-q)(B-A)\ge(t-q)d$, a contradiction. Hence $B<A+d$.
+
+Consequently $B<A+d<A+(1-A)=1$ and $B<A+d<2A$. Together with $0<A<B$, this gives all the required inequalities among $A$ and $B$.
+
+\emph{The three estimates.}
+
+\eqref{prep:contact-first}: Let $0\le w\le A$. Then $w\in[0,1]$, and since $q<t<s$ and $w\ge 0$, we get $qw\le sw\le m(w)$.
+
+\eqref{prep:contact-middle}: Let $A\le w\le B$. Then $w\in[a,1]$, so $h(A)\le h(w)$, that is, $m(A)-tA\le m(w)-tw$. This is $m(w)-m(A)\ge t(w-A)$. In fact the same argument gives this inequality for every $w\in[A,1]$.
+
+\eqref{prep:contact-last}: Let $B\le w\le 1$. Then $w\in[c,1]$, so $g(B)\le g(w)$, that is, $m(B)-qB\le m(w)-qw$. This is $m(w)-m(B)\ge q(w-B)$.
+\end{proof}

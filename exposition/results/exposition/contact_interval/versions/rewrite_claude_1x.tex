@@ -1,0 +1,11 @@
+Idea: take the running minimum of $m(u)-qu$ from the right; $A$ is a point where it grows faster than $t-q$, $B$ a nearby touching point.
+
+\begin{proof}
+Let $g(u)=m(u)-qu$, $L=\Lip(g)$, $F(u)=\min_{[u,1]}g$. Since $g(v)\ge(s-q)v\ge0=g(0)$, we get $F(0)=0$ and $F(1)=g(1)\ge s-q$.
+
+For $u<v$, $F(u)=\min(\min_{[u,v]}g,F(v))$ and $\min_{[u,v]}g\ge g(v)-L(v-u)$, so $0\le F(v)-F(u)\le L(v-u)$. Hence $\int_0^1F'\ge s-q>t-q$; some $A\in(0,1)$ has $F'(A)>t-q>0$.
+
+Call $v$ a contact point if $g(v)=F(v)$; a minimizer $v$ of $g$ on $[u,1]$ is one, as $g(v)=F(u)\le F(v)\le g(v)$. If $(A,A+\delta)$ had none, then $F(u)=F(A+\delta)$ for $u\in(A,A+\delta)$, contradicting $F'(A)>0$. Contact points form a closed set, so $A$ is one, and by differentiability there is a contact point $B\in(A,\min(2A,1))$ with $F(w)-F(A)\ge(t-q)(w-A)$ on $[A,B]$.
+
+Now $m(w)\ge sw\ge qw$; on $[A,B]$, $g(w)-g(A)\ge F(w)-F(A)\ge(t-q)(w-A)$; for $w\ge B$, $g(w)\ge F(B)=g(B)$.
+\end{proof}

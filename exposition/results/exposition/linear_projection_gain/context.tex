@@ -1,0 +1,142 @@
+Earlier results of the same paper, which any proof may cite. Their proofs are omitted.
+
+\begin{theorem}[Planar discretized Furstenberg estimate]
+\label{ang:furstenberg}
+Let $0<b<1$ and $b<f<2$. There is $\epsilon_0>0$ such that the
+following holds for sufficiently small $\delta$. Suppose that $P$ is
+a nonempty bounded $(\delta,f,\delta^{-\epsilon_0})$-set and that
+each $x\in P$ has a nonempty family $\mathcal T_x$ of incident
+$\delta$-tubes whose line parameters form a
+$(\delta,b,\delta^{-\epsilon_0})$-set. Then
+\[
+ \left|\bigcup_{x\in P}\mathcal T_x\right|_\delta
+       \ge\delta^{-2b-\epsilon_0}.
+\]
+The exponent may be decreased to absorb fixed bounded charts and fixed
+width multiples.
+\end{theorem}
+
+\begin{lemma}[Planar measure incidence obstruction]
+\label{ang:planar-measures}
+Fix $0<b<1$ and $b<f<2$. There is no sequence $\delta\to0$ with the
+following data. Let $\mu,\nu$ be subprobabilities on Borel label sets
+$X,W$ in Euclidean spaces, and let
+\[
+ p:X\longrightarrow\R^2,\qquad v:W\longrightarrow S^1
+\]
+be measurable coordinate maps with fixed bounded images. Suppose that
+$p_\#\mu$ and $v_\#\nu$ have respective $f$- and $b$-ball bounds
+of loss $\delta^{-o(1)}$ down to $\delta$. Let $E\subset X\times W$ be a measurable
+incidence relation with
+\[
+ (\mu\otimes\nu)(E)\ge\delta^{o(1)}.
+\]
+For each original direction label $\omega\in W$, put
+$E_\omega=\{\xi\in X:(\xi,\omega)\in E\}$. Assume that the set of
+point coordinates $p(E_\omega)$ is covered by at most
+$\delta^{-b-o(1)}$ strips of width $C\delta$ parallel to $v(\omega)$.
+\end{lemma}
+
+\begin{lemma}[Haar band estimates]\label{ang:haar}
+Let $0\le h\le n-1$, and let $V$ be a Haar-random codimension-$h$
+linear subspace of $\R^n$.
+For a unit vector $w$,
+\[
+ \Pr\{\dist(w,V)\le\delta\}\asymp\delta^h.
+\]
+If $j\le n-h$ unit vectors $w_1,\ldots,w_j$ have singular values
+$d_1\ge\cdots\ge d_j\ge0$, then
+\begin{equation}\label{ang:haar-multiple}
+ \delta^{-jh}\Pr\{\dist(w_i,V)\le\delta\text{ for all }i\}
+       \le C_{n,j}\prod_{i=1}^j(d_i+\delta)^{-h}.
+\end{equation}
+When $h=0$, the probability and the factors with exponent $h$ are one.
+\end{lemma}
+
+\begin{lemma}[Selection of slices]\label{ang:slice-selection}
+Let $0\le h\le n-2$. Let point and direction subprobabilities $\mu,\nu$ in $\R^n$ have
+$t$- and $q$-ball bounds with subpower losses, where $t,q>h$.
+Assume the directions lie in a fixed small projective chart. Let an
+incidence relation $E$ have mass at least subpower, and suppose each
+direction fiber is covered by at most $\delta^{-q-o(1)}$ tubes of
+width $C\delta$.
+
+For Haar-random codimension-$h$ subspaces $V$ and
+$z\in V^\perp$, set
+\begin{align*}
+ d\nu_V(w)&=\delta^{-h}\one_{\{|P_{V^\perp}w|\le\delta\}}\,d\nu(w),\\
+ d\mu_{V,z}(x)&=\delta^{-h}
+       \one_{\{|P_{V^\perp}x-z|\le\delta\}}\,d\mu(x).
+\end{align*}
+Integrate $z$ over a fixed sufficiently large ball. There are families of restrictions
+$\widetilde\nu_V\le\nu_V$, $\widetilde\mu_{V,z}\le\mu_{V,z}$,
+and relations $\widetilde E_{V,z}\subset E$, measurable in the displayed
+parameters and restricted to the two bands defining $\mu_{V,z}$ and
+$\nu_V$, such that
+\[
+ \mathbb E_V\int
+ (\widetilde\mu_{V,z}\otimes\widetilde\nu_V)(\widetilde E_{V,z})\,dz
+ \ge\delta^{o(1)},
+\]
+and the following hold:
+\begin{enumerate}
+\item The restricted measures have masses and ball losses at most
+$\delta^{-o(1)}$, with exponents $q-h$ and $t-h$, respectively.
+\item Each remaining direction fiber is covered by at most
+$\delta^{-(q-h)-o(1)}$ width-$C'\delta$ tubes.
+\item Put
+\[
+ p_{V,z}(x)=P_Vx,\qquad v_V(w)=P_Vw/|P_Vw|
+ \quad\text{for }|P_{V^\perp}w|\le\delta.
+\]
+The first map is projection to $V+z$ followed by translation to $V$;
+the second is well-defined on the direction band for small $\delta$.
+The coordinate pushforwards of the restricted measures under these maps
+satisfy the ball bounds in item~1, with fixed constant changes. For every
+original direction label $w$ in that band, the coordinates
+$p_{V,z}(\{x:(x,w)\in\widetilde E_{V,z}\})$ have the tube cover in
+item~2 with direction $v_V(w)$. This cover remains attached to $w$ even
+when two projected direction coordinates coincide.
+\end{enumerate}
+The direction restriction $\widetilde\nu_V$ depends on $V$ only, and its
+mass has an a priori subpower upper bound valid for every $V$.
+\end{lemma}
+
+\begin{lemma}[Transverse tube counting]\label{ang:loomis-whitney}
+Let $v_1,\ldots,v_m$ be unit vectors in $\R^m$, $m\ge2$, and suppose
+$|\det(v_1,\ldots,v_m)|\ge\Delta>0$. If a bounded set $A$ is covered,
+for each $i$, by $M_i$ tubes of width $C\delta$ parallel to $v_i$, then
+\[
+ |A|_{C_m\delta}\le C_{m,C}\Delta^{-m}
+       \prod_{i=1}^m M_i^{1/(m-1)}.
+\]
+Changing the fixed constant in the covering radius changes only the
+constant in this inequality.
+\end{lemma}
+
+\begin{lemma}[Weak radial estimate]\label{ang:weak-radial}
+Fix $k\ge2$, $\zeta>0$, and
+\[
+ k-2<\ell<\frac{(k-1)^2}{k}.
+\]
+For every $e>0$ there exist $\epsilon,c>0$ with the following property
+for sufficiently small $\delta$. Suppose that a probability $\lambda$
+in a bounded subset of $\R^k$ satisfies
+\begin{align*}
+ \lambda(B(x,r))&\le\delta^{-\epsilon}r^{k-1},\\
+ \lambda(H^{(r)})&\le\delta^{-\epsilon}r^\zeta
+ \qquad(\delta\le r\le1)
+\end{align*}
+for every affine hyperplane $H$, where $H^{(r)}$ is its $r$-neighborhood.
+There is a measurable pair set $G$ such that
+\[
+ (\lambda\otimes\lambda)(G^c)\lesssim\delta^c,
+ \qquad
+ \lambda\{z:(x,z)\in G,\ \pi_x(z)\in B(\theta,r)\}
+       \le\delta^{-e}r^\ell
+\]
+for every $x$, every spherical cap center $\theta$, and
+$\delta\le r\le1$. The diagonal is omitted from $G$. The conclusion
+also holds for balls in projective direction space, with a fixed change
+of constant, by taking the two antipodal caps.
+\end{lemma}

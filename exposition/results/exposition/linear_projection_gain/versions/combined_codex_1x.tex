@@ -1,0 +1,129 @@
+\begin{proof}
+It suffices to exclude a sequence $\delta\to0$ with subpower input losses, fiber covers of size $\delta^{-q-o(1)}$, and incidence mass at least $\delta^{o(1)}$. Indeed, failure of the theorem would supply such counterexamples with $\epsilon=c=1/j$ and $\delta_j<1/j$.
+
+Work along such a sequence. Restrict the relation to the bounded point region carrying $\mu$, preserving its mass. Choose one of finitely many small projective direction charts retaining subpower incidence, and normalize the restricted direction measure to a probability. Its mass before normalization is at least the retained incidence, so normalization costs only subpower factors. All fiber covers are inherited.
+
+Above the endpoint, we will slice to a plane. At the endpoint, we instead slice to three dimensions, where three transverse directions force a common incident set to be too small.
+
+\emph{The non-endpoint case.}
+Suppose $q>k-1$. Apply Lemma~\ref{ang:slice-selection} with $h=k-1$ and select a slice with subpower incidence. Scale its two restricted measures down by subpower factors to make them subprobabilities. Their planar coordinate pushforwards have ball exponents
+\[
+ b=q-h\in(0,\tfrac12],\qquad f=t-h\in(\tfrac12,1),
+\]
+and each original direction label has a cover by $\delta^{-b-o(1)}$ strips. These are precisely the hypotheses of Lemma~\ref{ang:planar-measures}, a contradiction. Keeping the original labels ensures that coincident projected directions cause no difficulty.
+
+\emph{Endpoint: controlling exceptional directions under slicing.}
+Now $q=k-1$. Put
+\[
+ h=k-2,\qquad g=t-h-\tfrac32>0.
+\]
+Choose $0<a<g/4$ and $h<\ell<h+1/k$. Choose $\beta>0$ sufficiently small, and then $e>0$ sufficiently small, that
+\[
+ a>2\beta,\qquad
+ \eta=(a-2\beta)(\ell-h)-3h\beta-e>0.
+\]
+Write the chart as $w(p)=(1,p)/\sqrt{1+|p|^2}$ and denote its probability law by $\lambda$. This bounded chart preserves ball bounds. Moreover, every affine hyperplane in $p$-space lifts to a linear hyperplane in direction space, so the plate hypothesis gives the affine-hyperplane bound required by Lemma~\ref{ang:weak-radial}.
+
+Apply that lemma with output loss $\delta^{-e}$. It gives a pair relation $G$ with
+$\lambda^{\otimes2}(G^c)\lesssim\delta^{c_e}$ and the stated $\ell$-dimensional radial cap bound. Call $(p,p')$ retained if it belongs to $G$ and $|p-p'|\ge\delta^\beta$; let $B$ be the exceptional pair relation.
+
+For a codimension-$h$ subspace $V$, define
+\[
+ d\lambda_V(p)=\delta^{-h}
+ \mathbf1_{\{|P_{V^\perp}w(p)|\le\delta\}}\,d\lambda(p).
+\]
+The two-vector Haar estimate and the bounded chart give, for every pair relation $R$,
+\[
+ \mathbb E_V\lambda_V^{\otimes2}(R)
+ \lesssim\int_R(|p-p'|+\delta)^{-h}\,d\lambda(p)\,d\lambda(p').
+\]
+Indeed, the two singular values are comparable to $1$ and $|p-p'|$. The $(h+1)$-ball bound, summed over annuli, bounds this integral over $|p-p'|\le\rho$ by $\delta^{-o(1)}\rho$ whenever $\delta\le\rho\le1$. Splitting $G^c$ at distance $\delta^\theta$ therefore gives
+\[
+ \mathbb E_V\lambda_V^{\otimes2}(B)
+ \lesssim
+ \delta^{c_e-\theta h}
+ +\delta^{\theta-o(1)}
+ +\delta^{\beta-o(1)}
+ \le\delta^\kappa
+\]
+for some $\kappa>0$, on choosing $0<\theta<1$ sufficiently small.
+
+We also need to control nearly dependent triples. For two retained anchored pairs $(p,p')$, $(p,p'')$, put
+\[
+ u=p'-p,\quad v=p''-p,\quad
+ \alpha=\left|\frac{u}{|u|}\wedge\frac{v}{|v|}\right|.
+\]
+Subtracting the first unnormalized column from the other two shows
+\[
+ |w(p)\wedge w(p')\wedge w(p'')|
+ \asymp |u\wedge v|=|u|\,|v|\,\alpha.
+\]
+For completeness, the squared unnormalized wedge is
+$|u\wedge v|^2+|p\wedge u\wedge v|^2$, which proves the comparison.
+
+The three singular values satisfy
+$d_1\asymp1$, $d_2\gtrsim\delta^\beta$, and
+$d_3\gtrsim\delta^{2\beta}\alpha$, by the two-column area and the wedge comparison. Thus Lemma~\ref{ang:haar} gives
+\[
+ \delta^{-3h}\Pr_V\{w(p),w(p'),w(p'')
+       \text{ all lie in the direction band}\}
+ \lesssim\delta^{-3h\beta}(\alpha+\delta)^{-h}.
+\]
+For fixed $p,p'$, the weak radial bound, using two antipodal caps, gives
+\[
+ \lambda\{p'':(p,p'')\text{ retained},\ \alpha\le r\}
+ \lesssim\delta^{-e}r^\ell
+ \qquad(\delta\le r\le1).
+\]
+Let $T$ consist of triples with both anchored pairs retained and wedge smaller than $2\delta^a$. Such triples have
+$\alpha\lesssim\delta^{a-2\beta}$. Summing the preceding kernel over angular annuli, including $\alpha\le\delta$, yields
+\[
+ \mathbb E_V\lambda_V^{\otimes3}(T)
+ \lesssim
+ \delta^{-3h\beta-e}
+ \bigl(\delta^{a-2\beta}\bigr)^{\ell-h}
+ =\delta^\eta.
+\]
+Here $\ell>h$ is exactly what makes the angular sum converge.
+
+\emph{Endpoint: triple incidence and tube counting.}
+Apply Lemma~\ref{ang:slice-selection} with this $h$. Write
+$\sigma_{V,z}=\widetilde\mu_{V,z}$ and let $\tau_V\le\lambda_V$ be the restricted chart-label measure. In particular,
+$\sup_V\|\tau_V\|\le\delta^{-o(1)}$.
+Direct integration of the point-band definition gives
+\[
+ \int\|\sigma_{V,z}\|\,dz\le C
+ \quad\text{for every }V.
+\]
+Set
+\[
+ F(V,z,x)=\tau_V\{p:(x,w(p))\in\widetilde E_{V,z}\}.
+\]
+The slice-selection lemma gives a subpower lower bound for its integrated first moment. Since the total integrated point mass is bounded, H\"older gives
+\[
+ J:=\mathbb E_V\int\!\int F(V,z,x)^3
+                 \,d\sigma_{V,z}(x)\,dz
+ \ge\delta^{o(1)}.
+\]
+
+Expand $F^3$ as an integral over three direction labels. By Fubini and the preceding point-mass bound, the contribution from an exceptional anchored pair or from $T$ is at most
+\[
+ C\sup_V\|\tau_V\|\,
+       \mathbb E_V\lambda_V^{\otimes2}(B)
+ +C\mathbb E_V\lambda_V^{\otimes3}(T).
+\]
+This is power-small. Consequently, triples with original wedge at least $2\delta^a$ still contribute subpower mass to $J$. Projection to $V$ and unit normalization perturb each direction by $O(\delta)$; since $a<1$, their determinant in the three-dimensional space $V$ is at least $\delta^a$.
+
+Fix such a slice and triple, and let $A$ be the projected coordinates of their common incident points. Item~3 of slice selection gives, for each original label, a cover of $A$ by $\delta^{-1-o(1)}$ tubes in its projected direction. Lemma~\ref{ang:loomis-whitney} therefore gives
+\[
+ |A|_\delta\lesssim\delta^{-3/2-3a-o(1)}.
+\]
+The point-coordinate ball bound of exponent $t-h$ then bounds the common incident point mass by
+\[
+ \delta^{t-h-3/2-3a-o(1)}
+ =\delta^{g-3a-o(1)}.
+\]
+The total measure of the parameters $(V,z)$ and three restricted direction labels is at most subpower. Integrating this upper bound contradicts their subpower contribution to $J$, because $g-3a>0$.
+
+When $h=0$, all slicing weights equal one and the $z$-integral is over a singleton; the same argument applies. This proves the endpoint and hence the theorem.
+\end{proof}

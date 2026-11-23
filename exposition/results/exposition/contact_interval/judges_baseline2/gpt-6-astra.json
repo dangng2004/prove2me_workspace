@@ -1,0 +1,65 @@
+{
+  "model": "gpt-6-astra",
+  "labels": {
+    "A": "combined_codex_1x",
+    "B": "rewrite_claude_1x",
+    "C": "combined_claude_1x",
+    "D": "rewrite_codex_1x",
+    "E": "original"
+  },
+  "ranking": [
+    "combined_codex_1x",
+    "combined_claude_1x",
+    "rewrite_claude_1x",
+    "rewrite_codex_1x",
+    "original"
+  ],
+  "scores": {
+    "combined_codex_1x": {
+      "correctness": 5,
+      "overview": 4,
+      "structure": 5,
+      "justification": 5,
+      "economy": 5,
+      "notation": 5,
+      "explanation": 5
+    },
+    "rewrite_claude_1x": {
+      "correctness": 5,
+      "overview": 5,
+      "structure": 4,
+      "justification": 5,
+      "economy": 4,
+      "notation": 5,
+      "explanation": 4
+    },
+    "combined_claude_1x": {
+      "correctness": 5,
+      "overview": 5,
+      "structure": 5,
+      "justification": 5,
+      "economy": 4,
+      "notation": 5,
+      "explanation": 5
+    },
+    "rewrite_codex_1x": {
+      "correctness": 5,
+      "overview": 4,
+      "structure": 4,
+      "justification": 4,
+      "economy": 5,
+      "notation": 5,
+      "explanation": 4
+    },
+    "original": {
+      "correctness": 5,
+      "overview": 3,
+      "structure": 3,
+      "justification": 4,
+      "economy": 5,
+      "notation": 4,
+      "explanation": 4
+    }
+  },
+  "rationale": "All five proofs are mathematically correct, with the compressed running-minimum arguments requiring only routine inferences. A is the most economical and direct: successive minimizations establish the slope inequalities, and one explicit inequality chain forces B to lie sufficiently close to A. C offers the same elementary mechanism with excellent signposting and explicitly identifies continuity as the sufficient regularity, but adds slightly more scaffolding. B clearly announces its strategy and supplies detailed justification of Lipschitz continuity and the existence of nearby contacts, although its differentiation argument is more elaborate than the minimization approach. D compresses those justifications while retaining a useful opening overview; E is similarly sound but gives less strategic guidance and uses \u201ccontact points\u201d without explicitly defining the term."
+}

@@ -1,0 +1,3 @@
+- Version 3 supplies the successive minimizations and continuity argument ensuring \(B\) is close to \(A\).
+- Version 2 reinforces expressing slope inequalities as minimum properties of tilted functions.
+- Version 1 supplies the concise verification of the first inequality.

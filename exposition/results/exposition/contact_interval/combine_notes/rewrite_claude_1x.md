@@ -1,0 +1,5 @@
+- Added a one-line overview naming the key object (running minimum from the right) and how $A$, $B$ arise.
+- Made the Lipschitz/monotonicity of $F$ an explicit one-line inequality instead of a case description.
+- Introduced "contact point" with a justification that every minimizer is one; this single fact yields both $F(A)=g(A)$ (via closedness) and the existence of $B$, replacing two separate informal arguments.
+- Made $F(0)=0$ explicit and noted $t-q>0$, which is where $t>q$ is used; $B<\min(2A,1)$ is built into the choice.
+- Each final inequality is now tied to a single displayed reason.

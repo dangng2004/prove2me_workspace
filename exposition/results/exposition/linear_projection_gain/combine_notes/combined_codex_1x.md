@@ -1,0 +1,3 @@
+- From Version 1: the planar reduction, the endpoint radial estimate, and the Haar-weighted control of exceptional pairs and triples. The needed kernel estimates are derived explicitly.
+- From Versions 2 and 3: careful preservation of incidence mass and fiber covers under restriction and normalization. Working directly at arbitrary scales avoids their dyadic bookkeeping and additional gain lemmas.
+- The endpoint conclusion integrates the common-fiber upper bound directly, replacing the separate extraction of a slice, a triple, and a covering-number lower bound.

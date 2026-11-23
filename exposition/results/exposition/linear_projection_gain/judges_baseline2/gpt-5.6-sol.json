@@ -1,0 +1,65 @@
+{
+  "model": "gpt-5.6-sol",
+  "labels": {
+    "A": "rewrite_claude_1x",
+    "B": "original",
+    "C": "combined_claude_1x",
+    "D": "rewrite_codex_1x",
+    "E": "combined_codex_1x"
+  },
+  "ranking": [
+    "combined_claude_1x",
+    "rewrite_claude_1x",
+    "combined_codex_1x",
+    "rewrite_codex_1x",
+    "original"
+  ],
+  "scores": {
+    "rewrite_claude_1x": {
+      "correctness": 5,
+      "overview": 5,
+      "structure": 5,
+      "justification": 5,
+      "economy": 4,
+      "notation": 5,
+      "explanation": 5
+    },
+    "original": {
+      "correctness": 4,
+      "overview": 4,
+      "structure": 3,
+      "justification": 3,
+      "economy": 3,
+      "notation": 3,
+      "explanation": 4
+    },
+    "combined_claude_1x": {
+      "correctness": 5,
+      "overview": 5,
+      "structure": 5,
+      "justification": 5,
+      "economy": 4,
+      "notation": 5,
+      "explanation": 5
+    },
+    "rewrite_codex_1x": {
+      "correctness": 5,
+      "overview": 4,
+      "structure": 4,
+      "justification": 5,
+      "economy": 5,
+      "notation": 5,
+      "explanation": 4
+    },
+    "combined_codex_1x": {
+      "correctness": 5,
+      "overview": 4,
+      "structure": 4,
+      "justification": 5,
+      "economy": 5,
+      "notation": 5,
+      "explanation": 5
+    }
+  },
+  "rationale": "C gives the clearest modular presentation: its overview identifies the endpoint obstruction, and Claims A\u2013C isolate the slicing kernels, wedge geometry, and exceptional-set estimates before the final incidence argument. A is equally correct and highly explanatory, especially about where the plate hypothesis enters, but is slightly more expansive and contains a mildly distracting generic normalization discussion in Step 0. E is the most economical of the fully detailed proofs and ends efficiently by integrating a uniform bound for every transverse triple; D is also rigorous and concise, but makes the global strategy and the role of individual hypotheses somewhat less visible. B contains the same essentially correct argument, but cites undefined equations such as `ang:direction-pair-kernel` and `ang:point-slice-total`, leaving two estimates less self-contained, and its long unpartitioned presentation makes the proof harder to navigate."
+}

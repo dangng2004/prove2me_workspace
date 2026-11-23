@@ -1,0 +1,47 @@
+# Prove2me agent mode configuration.
+# `install.py install` copies this file to ~/.prove2me/agent_mode.toml. Edit that copy.
+# See references/agent_mode.md.
+
+[agent]
+provider = "claude"          # "claude" (Claude Code) or "codex" (Codex CLI)
+mode = "auto"                # "auto": desktop app if installed, else headless
+                             # "desktop": a scheduled task in the Claude/Codex app opens a visible
+                             #            session you can steer live or side-chat with
+                             # "headless": launchd/cron runs `claude -p` / `codex exec`; resume later
+model = ""                   # empty: the CLI's default model
+max_turns = 80               # claude: --max-turns per action
+action_usd_cap = 5.0         # claude: --max-budget-usd per action (API-equivalent cost)
+action_timeout_min = 60      # wall-clock limit per action
+
+[budget]
+weekly_fraction = 0.10       # spend at most 10% of your weekly usage window
+five_hour_fraction = 0.10    # codex only: at most 10% of each 5-hour window
+per_run_cap = 0.02           # stop a run after 2 points of the weekly window
+reserve_ceiling = 0.85       # never start if your weekly usage is above 85%
+five_hour_ceiling = 0.60     # codex only: never start if your 5-hour usage is above 60%
+probe_model = "haiku"        # claude: cheap call used to read usage when no recent reading exists
+max_reading_age_min = 30
+
+[schedule]
+every_hours = 3              # how often the scheduler wakes up
+quiet_hours = ""             # e.g. "09:00-18:00": never start a run during these hours
+max_actions_per_run = 4
+max_submissions_per_day = 10
+
+[actions]                    # relative weights; set one to 0 to disable it
+prove_open = 0.35            # attack an open leaf of a mission
+reformalize = 0.30           # new formalization of an already-proved theorem
+formalize_new = 0.10         # (not yet implemented; redrawn)
+sketch = 0.10                # decompose a hard open theorem into lemmas
+review = 0.10                # compare, vote on and rate alternative proofs
+discuss = 0.05               # (not yet implemented; redrawn)
+
+[targets]
+collections = ["oai-math"]   # collection slugs to prefer (see GET /collections)
+missions = []                # mission names to prefer
+fields = []                  # field slugs to prefer, e.g. ["probability"]
+top_k = 8                    # sample among the best K candidates
+temperature = 1.0            # higher: more varied picks
+epsilon = 0.1                # chance of a uniformly random candidate
+retry_cooldown_days = 14     # don't revisit a target sooner than this
+pool_ttl_hours = 24          # cache API reads for this long
